@@ -1,5 +1,7 @@
 create database BookAndCanvas
 
+use BookAndCanvas
+
 create table Users
 (
 	[Id] int primary key identity(1,1),
@@ -11,6 +13,8 @@ create table Users
 	[Bio] nvarchar (max)
 )
 
+use BookAndCanvas
+
 create table UserMsg
 (
 	[Id] int primary key identity(1,1),
@@ -18,6 +22,18 @@ create table UserMsg
 	[BuyerId] int not null,
 	[SellerId] int not null
 )
+
+use BookAndCanvas
+create table Message
+(
+	[Id] int primary key identity(1,1),
+	[MessageId] int not null,
+	[MshDate] date DEFAULT GETDATE() not null,
+	[isRead] bit not null,
+	[MsgTitle] nvarchar(250),
+	[MsgText] nvarchar(max)
+)
+
 
 alter table UserMsg
 add constraint FK_UserMsg_User_Buyer 
@@ -29,37 +45,30 @@ add constraint FK_UserMsg_User_Seller
 	foreign key (SellerId)
 	references Users (Id)
 
-create table Message
-(
-	[Id] int primary key identity(1,1),
-	[MessageId] int not null,
-	[MsgDate] DateTime not null,
-	[isRead] bit not null,
-	[MsgTitle] nvarchar(250),
-	[MsgText] nvarchar(max)
-)
-
 alter table UserMsg
 add constraint FK_UserMsg_Message_Id 
 	foreign key (MessageId)
 	references Message (Id)
 
+	use BookAndCanvas
 create table Invoice
 (
 	[Id] int primary key identity(1,1),
-	[Date] DateTime not null,
+	[Date] date DEFAULT GETDATE() not null,
 	[Total] Float not null,
 	[BuyerId] int not null,
 	[ServiceType] int not null,
 	[PaymentId] int not null,
 )
 
+use BookAndCanvas
 create table Service
 (
 	[Id] int primary key identity(1,1),
 	[ServiceName] nvarchar(50) not null
 )
 
+use BookAndCanvas
 create table Payment
 (
 	[Id] int primary key identity(1,1),
@@ -82,6 +91,7 @@ add constraint FK_Invoice_Payment_Id
 	foreign key (PaymentId)
 	references Payment (Id)
 
+	use BookAndCanvas
 create table Product
 (
 	[Id] int primary key identity(1,1),
@@ -103,6 +113,7 @@ add constraint FK_Product_User_Id
 	foreign key (SellerId)
 	references Users (Id)
 
+	use BookAndCanvas
 create table Product_Invoice
 (
 	[Id] int primary key identity(1,1),
@@ -120,6 +131,7 @@ add constraint FK_ProductInvoice_Producte_Id
 	foreign key (ProductId)
 	references Product (Id)
 
+	use BookAndCanvas
 create table Payment_Type
 (
 	[Id] int primary key identity(1,1),
