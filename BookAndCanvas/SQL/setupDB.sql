@@ -28,7 +28,7 @@ create table Message
 (
 	[Id] int primary key identity(1,1),
 	[MessageId] int not null,
-	[MshDate] date DEFAULT GETDATE() not null,
+	[MshDate] datetime DEFAULT GETDATE() not null,
 	[isRead] bit not null,
 	[MsgTitle] nvarchar(250),
 	[MsgText] nvarchar(max)
@@ -54,7 +54,7 @@ add constraint FK_UserMsg_Message_Id
 create table Invoice
 (
 	[Id] int primary key identity(1,1),
-	[Date] date DEFAULT GETDATE() not null,
+	[Date] datetime DEFAULT GETDATE() not null,
 	[Total] Float not null,
 	[BuyerId] int not null,
 	[ServiceType] int not null,
