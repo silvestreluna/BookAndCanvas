@@ -70,18 +70,18 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 ## Book & Canvas Mockups
 ![Landing Page](./src/assets/mockups/BookAndCanvas-01.png)
 
-![Landing Page](./src/assets/mockups/BookAndCanvas-06.png)
+![Menu Displayed](./src/assets/mockups/BookAndCanvas-06.png)
 
-![Landing Page](./src/assets/mockups/BookAndCanvas-02.png)
+![Profile Page](./src/assets/mockups/BookAndCanvas-02.png)
 
-![Landing Page](./src/assets/mockups/BookAndCanvas-08.png)
+![Edit Profile Page](./src/assets/mockups/BookAndCanvas-08.png)
 
-![Landing Page](./src/assets/mockups/BookAndCanvas-03.png)
+![Message Page](./src/assets/mockups/BookAndCanvas-03.png)
 
-![Landing Page](./src/assets/mockups/BookAndCanvas-04.png)
+![Shopping Cart Page](./src/assets/mockups/BookAndCanvas-04.png)
 
-![Landing Page](./src/assets/mockups/BookAndCanvas-05.png)
+![Upload Page](./src/assets/mockups/BookAndCanvas-05.png)
 
-![Landing Page](./src/assets/mockups/BookAndCanvas-07.png)
+![Order History Page](./src/assets/mockups/BookAndCanvas-07.png)
 
-![Landing Page](./src/assets/mockups/BookAndCanvas-09.png)
+![Add User Profile Page](./src/assets/mockups/BookAndCanvas-09.png)
