@@ -7,6 +7,7 @@ using BookAndCanvas.Models;
 using BookAndCanvas.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace BookAndCanvas.Controllers
 {
@@ -14,12 +15,26 @@ namespace BookAndCanvas.Controllers
     [ApiController]
     public class ProductController : ControllerBase
     {
+        private readonly ILogger<ProductController> _logger;
+        private readonly IProductRepository _repo;
+
+        public ProductController(ILogger<ProductController> logger, IProductRepository repo)
+        {
+            _logger = logger;
+            _repo = repo;
+        }
+
         [HttpPost]
         public IActionResult AddProduct(NewProductDTO newProduct)
         {
             var repo = new ProductRepo();
             var createdProduct = repo.AddNewProduct(newProduct);
             return Ok(createdProduct);
+        }
+        [HttpGet]
+        public IEnumerable<Product> GetAll()
+        {
+            return _repo.GetAllProducts();
         }
     }
 }
