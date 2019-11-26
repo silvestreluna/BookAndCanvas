@@ -8,7 +8,7 @@ using BookAndCanvas.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookAndCanvas.Controllers1
+namespace BookAndCanvas.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
