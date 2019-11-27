@@ -34,7 +34,7 @@ const blankNewProdFields = {
 class AddProduct extends React.Component {
   state = {
     showingModal: false,
-    newProdObj:newProdObj,
+    newProdObj: newProdObj,
   }
 
   toggleModal = () => {
