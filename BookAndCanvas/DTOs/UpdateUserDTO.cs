@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookAndCanvas.Models
+namespace BookAndCanvas.DTOs
 {
-    public class Users
+    public class UpdateUserDTO
     {
-        public int Id { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
         public string Phone { get; set; }
