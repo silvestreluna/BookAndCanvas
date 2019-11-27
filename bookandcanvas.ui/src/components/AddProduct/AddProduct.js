@@ -10,7 +10,7 @@ import {
 import data from '../../helpers/data/AddProduct'
 import Category from '../Category/Category'
 
-import './NewArtWork.scss';
+import './addProduct.scss';
 
 const newProdObj = {
   ProductName: '',
@@ -31,7 +31,7 @@ const blankNewProdFields = {
   qty: ''
 };
 
-class NewArtWork extends React.Component {
+class AddProduct extends React.Component {
   state = {
     showingModal: false,
     newProdObj:newProdObj,
@@ -78,7 +78,7 @@ class NewArtWork extends React.Component {
       imgUrl } = this.state.newProdObj;
 
     return (
-      <div className="NewArtWork">
+      <div className="AddProduct">
         <button onClick={this.toggleModal}>Add</button>
         <Modal isOpen={modal} centered={true} >
           <ModalBody>
@@ -124,4 +124,4 @@ class NewArtWork extends React.Component {
   }
 }
 
-export default NewArtWork;
+export default AddProduct;
