@@ -28,6 +28,7 @@ namespace BookAndCanvas
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddScoped<IProductRepository, ProductRepo>();
+            services.AddScoped<IUsersRepository, UsersRepo>();
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
