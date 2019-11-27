@@ -17,7 +17,8 @@ const newProdObj = {
   description: '',
   price: '',
   serviceType: '',
-  imgUrl: ''
+  imgUrl: '',
+  qty: ''
 };
 
 
@@ -26,7 +27,8 @@ const blankNewProdFields = {
   description: '',
   price: '',
   serviceType: '',
-  imgUrl: ''
+  imgUrl: '',
+  qty: ''
 };
 
 class NewArtWork extends React.Component {
@@ -72,6 +74,7 @@ class NewArtWork extends React.Component {
       description,
       price,
       serviceType,
+      qty,
       imgUrl } = this.state.newProdObj;
 
     return (
@@ -88,6 +91,10 @@ class NewArtWork extends React.Component {
                 <FormGroup>
                   <Label for="productDescription">Description</Label>
                   <Input type="textarea" id="productDescription" name="description" value={description} onChange={this.handleChanges} required/>
+                </FormGroup>
+                <FormGroup>
+                  <Label for="product-qty">Quantity </Label>
+                  <Input type="number" name="qty" value={qty} onChange={this.handleChanges} required/>
                 </FormGroup>
                 <div className="price-category">
                   <FormGroup>
