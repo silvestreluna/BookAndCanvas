@@ -17,22 +17,22 @@ namespace BookAndCanvas.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        //public HttpResponseMessage Get()
-        //{
-        //    DataTable table = new DataTable();
+        public HttpResponseMessage Get()
+        {
+            DataTable table = new DataTable();
 
-        //    string query = @"select EmployeeID, EmployeeName, Department, MailID, convert(varchar(10),DOH, 120) as DOH
-        //                    from Employees";
+            string query = @"select EmployeeID, EmployeeName, Department, MailID, convert(varchar(10),DOH, 120) as DOH
+                            from Employees";
 
-        //    using (var con = new SqlConnection(ConfigurationManager<>.ConnectionStrings["EmployeeAppDB"].ConnectionString))
-        //    using (var cmd = new SqlCommand(query, con))
-        //    using (var da = new SqlDataAdapter(cmd))
-        //    {
-        //        cmd.CommandType = CommandType.Text;
-        //        da.Fill(table);
-        //    }
+            using (var con = new SqlConnection(ConfigurationManager<>.ConnectionStrings["EmployeeAppDB"].ConnectionString))
+            using (var cmd = new SqlCommand(query, con))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.Text;
+                da.Fill(table);
+            }
 
-        //    return Request.CreateResponse(HttpStatusCode.OK, table);
-        //}
+            return Request.CreateResponse(HttpStatusCode.OK, table);
+        }
     }
 }
