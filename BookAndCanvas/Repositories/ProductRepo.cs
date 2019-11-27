@@ -9,7 +9,7 @@ using BookAndCanvas.Models;
 
 namespace BookAndCanvas.Repositories
 {
-    public class ProductRepo
+    public class ProductRepo : IProductRepository
     {
         string _connectionString = "Server=localhost;Database=BookAndCanvas;Trusted_Connection=True";
 
@@ -23,6 +23,16 @@ namespace BookAndCanvas.Repositories
                             VALUES(@ServiceType, @Description, @SellerId, @ProductName, @Price, @ImgUrl)";
 
                 return db.QueryFirst<Product>(sql, newProduct);
+            }
+        }
+
+        public IEnumerable<Product> GetAllProducts()
+        {
+            
+            using (var db = new SqlConnection(_connectionString))
+            {
+                var products = db.Query<Product>(@"Select * from Product");
+                return products.ToList();
             }
         }
     }
