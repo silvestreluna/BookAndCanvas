@@ -27,7 +27,7 @@ namespace BookAndCanvas
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddScoped<IProductRepository, ProductRepo>();
+<<<<<<< HEAD
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -35,6 +35,9 @@ namespace BookAndCanvas
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             }));
+=======
+            services.AddScoped<IProductRepository, ProductRepo>();
+>>>>>>> master
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

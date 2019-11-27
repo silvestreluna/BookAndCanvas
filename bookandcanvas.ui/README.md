@@ -66,3 +66,22 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## Book & Canvas Mockups
+![Landing Page](./src/assets/mockups/BookAndCanvas-01.png)
+
+![Menu Displayed](./src/assets/mockups/BookAndCanvas-06.png)
+
+![Profile Page](./src/assets/mockups/BookAndCanvas-02.png)
+
+![Edit Profile Page](./src/assets/mockups/BookAndCanvas-08.png)
+
+![Message Page](./src/assets/mockups/BookAndCanvas-03.png)
+
+![Shopping Cart Page](./src/assets/mockups/BookAndCanvas-04.png)
+
+![Upload Page](./src/assets/mockups/BookAndCanvas-05.png)
+
+![Order History Page](./src/assets/mockups/BookAndCanvas-07.png)
+
+![Add User Profile Page](./src/assets/mockups/BookAndCanvas-09.png)
