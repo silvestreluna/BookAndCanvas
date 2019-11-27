@@ -5,7 +5,7 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-      <h2>test in APP.js</h2>
+      <h1>Branch and Chicken- You can delete at any time. </h1>
       <NewArtWork />
     </div>
   );
