@@ -6,9 +6,10 @@ class ProductTile extends React.Component{
     render(){
          var productTileStyle = {
             backgroundImage:`url(${this.props.data.imgUrl})`,
-            backgroundImageRepeat: "noRepeat",
-            backgroundCover:"cover",
-            backgroundPosition:"center"
+            backgroundRepeat: "no-Repeat",
+            backgroundPosition:"center",
+            backgroundSize:"cover"
+
         }
         return(
             <React.Fragment>
