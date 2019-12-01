@@ -1,12 +1,12 @@
 import React from 'react';
-import NewArtWork from '../components/NewArtWork/NewArtWork'
+import AddProduct from '../components/AddProduct/AddProduct'
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <h2>test in APP.js</h2>
-      <NewArtWork />
+      <h1>Branch and Chicken- You can delete at any time. </h1>
+      <AddProduct />
     </div>
   );
 }
