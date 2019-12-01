@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace BookAndCanvas.Controllers1
+namespace BookAndCanvas.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -27,8 +27,7 @@ namespace BookAndCanvas.Controllers1
         [HttpPost]
         public IActionResult AddProduct(NewProductDTO newProduct)
         {
-            var repo = new ProductRepo();
-            var createdProduct = repo.AddNewProduct(newProduct);
+            var createdProduct = _repo.AddNewProduct(newProduct);
             return Ok(createdProduct);
         }
         [HttpGet]

@@ -18,9 +18,9 @@ namespace BookAndCanvas.Repositories
             using (var db = new SqlConnection(_connectionString))
             {
                 var sql = @"INSERT INTO Product
-                            ([ServiceType], [Description], [SellerId], [ProductName], [Price], [ImgUrl])
+                            ([ServiceType], [Description], [SellerId], [ProductName], [Price], [ImgUrl], [Qty])
                             output inserted.*
-                            VALUES(@ServiceType, @Description, @SellerId, @ProductName, @Price, @ImgUrl)";
+                            VALUES(@ServiceType, @Description, @SellerId, @ProductName, @Price, @ImgUrl, @Qty)";
 
                 return db.QueryFirst<Product>(sql, newProduct);
             }

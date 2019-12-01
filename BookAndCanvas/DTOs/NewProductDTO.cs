@@ -13,5 +13,6 @@ namespace BookAndCanvas.DTOs
         public string ProductName { get; set; }
         public int SellerId { get; set; }
         public string ImgUrl { get; set; }
+        public int Qty { get; set; }
     }
 }
