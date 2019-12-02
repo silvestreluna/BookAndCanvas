@@ -1,5 +1,5 @@
 import React from 'react';
-import getAllProducts from '../../Helpers/productRequests';
+import getAllProducts from '../../helpers/data/productRequests';
 import ProductTile from '../ProductTile/ProductTile';
 import AddProduct from '../AddProduct/AddProduct';
 
