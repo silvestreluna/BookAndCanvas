@@ -7,7 +7,7 @@ import {
   Label,
   Input
 } from 'reactstrap';
-import data from '../../helpers/data/AddProduct'
+import data from '../../Helpers/data/AddProduct'
 import Category from '../Category/Category'
 
 import './addProduct.scss';

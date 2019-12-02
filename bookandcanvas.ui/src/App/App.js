@@ -1,12 +1,17 @@
 import React from 'react';
+import LandingPage from '../components/LandingPage/LandingPage';
 import AddProduct from '../components/AddProduct/AddProduct'
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <h1>Branch and Chicken- You can delete at any time. </h1>
-      <AddProduct />
+
+      <h2>Book & Canvas</h2>
+      <header>
+        <AddProduct />
+      </header>
+      <LandingPage />
     </div>
   );
 }

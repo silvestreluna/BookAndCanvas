@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { Input, Label } from 'reactstrap';
-import getData from '../../helpers/data/GetData';
+import getData from '../../Helpers/data/GetData';
 import './category.scss';
 
 class Category extends React.Component {
