@@ -9,7 +9,6 @@ function App() {
 
       <h2>Book & Canvas</h2>
       <header>
-        <AddProduct />
       </header>
       <LandingPage />
     </div>

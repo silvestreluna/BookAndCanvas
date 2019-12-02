@@ -1,6 +1,7 @@
 import React from 'react';
 import getAllProducts from '../../Helpers/productRequests';
-import ProductTile from '../ProductTile/ProductTile'
+import ProductTile from '../ProductTile/ProductTile';
+import AddProduct from '../AddProduct/AddProduct';
 
 import './LandingPage.scss';
 
@@ -21,9 +22,14 @@ class LandingPage extends React.Component{
     render(){
         console.log(this.state.Products);
         return(
-            <section className="landingPage-container">
-              {this.buildProductTile()}  
-            </section>
+            <span className="main-wrapper">
+                <header>
+                    <AddProduct />
+                </header>
+                <section className="landingPage-container">
+                {this.buildProductTile()}  
+                </section>
+            </span>
         )
     }
 }
