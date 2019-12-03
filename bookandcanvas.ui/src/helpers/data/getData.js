@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = "http://localhost:50090/api";
+const baseUrl = "https://localhost:44350/api";
 
 const getServicesType = () => new Promise((resolve,reject) => {
   axios.get(`${baseUrl}/service`)

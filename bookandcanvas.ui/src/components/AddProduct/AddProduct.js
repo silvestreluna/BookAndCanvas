@@ -7,7 +7,7 @@ import {
   Label,
   Input
 } from 'reactstrap';
-import data from '../../Helpers/data/AddProduct'
+import data from '../../helpers/data/addProductCalls'
 import Category from '../Category/Category'
 
 import './addProduct.scss';
@@ -63,6 +63,7 @@ class AddProduct extends React.Component {
       .then(() => {
         this.toggleModal();
         this.setState({ newProdObj: blankNewProdFields });
+        this.props.getProd();
       })
       .catch(err => console.log(err));
   }
