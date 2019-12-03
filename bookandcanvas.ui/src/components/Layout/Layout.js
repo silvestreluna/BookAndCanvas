@@ -11,12 +11,15 @@ class Layout extends React.Component{
                     <nav>This is the navbar</nav>
                     <div>user info and other things</div>
                 </header>
-                <main>
+                <section>
                     <aside>
-                        <p>aside information</p>
+                            <p>aside information</p>
                     </aside>
-                    <LandingPage></LandingPage>
-                </main>
+                    <main>
+                        
+                        <LandingPage></LandingPage>
+                    </main>
+                </section>
             </React.Fragment>
         );
     }
