@@ -1,17 +1,17 @@
-import React from 'react'; 
+import React from 'react';
 import { Input, Label } from 'reactstrap';
 import getData from '../../helpers/data/getData';
 import './category.scss';
 
 class Category extends React.Component {
   state = {
-    allServiceType: []
+    allServiceType: [],
   }
 
   getAllServicesFromDb = () => {
     getData.getServicesType()
-      .then((resp) => this.setState({allServiceType: resp}))
-      .catch(err =>  console.error(err));
+      .then((resp) => this.setState({ allServiceType: resp }))
+      .catch((err) => console.error(err));
   }
 
   handleChanges = (e) => {
@@ -25,27 +25,26 @@ class Category extends React.Component {
   }
 
   render() {
-
     const { allServiceType } = this.state;
 
     const serviceType = () => {
       const servType = this.props.serviceType;
-      if (!servType){
-        return '0'
-      } 
+      if (!servType) {
+        return '0';
+      }
       return servType;
     };
-    
-    const displayOptions = allServiceType.map(service => <option key={service.id} value={service.id}>{service.serviceName}</option>);
+
+    const displayOptions = allServiceType.map((service) => <option key={service.id} value={service.id}>{service.serviceName}</option>);
 
     return (
       <React.Fragment>
         <Label for="typeCategory">Service Type</Label>
-        <Input type="select" 
-               name="typeCategory" 
-               id="typeCategory" 
-               value={serviceType()} 
-               onChange={this.handleChanges} 
+        <Input type="select"
+               name="typeCategory"
+               id="typeCategory"
+               value={serviceType()}
+               onChange={this.handleChanges}
                required>
           <option defaultValue></option>
           {displayOptions}
