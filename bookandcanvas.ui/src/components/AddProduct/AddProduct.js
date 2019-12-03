@@ -5,10 +5,10 @@ import {
   Form,
   FormGroup,
   Label,
-  Input
+  Input,
 } from 'reactstrap';
-import data from '../../helpers/data/addProductCalls'
-import Category from '../Category/Category'
+import data from '../../helpers/data/addProductCalls';
+import Category from '../Category/Category';
 
 import './addProduct.scss';
 
@@ -18,7 +18,7 @@ const newProdObj = {
   price: '',
   serviceType: '',
   imgUrl: '',
-  qty: ''
+  qty: '',
 };
 
 
@@ -28,13 +28,13 @@ const blankNewProdFields = {
   price: '',
   serviceType: '',
   imgUrl: '',
-  qty: ''
+  qty: '',
 };
 
 class AddProduct extends React.Component {
   state = {
     showingModal: false,
-    newProdObj: newProdObj,
+    newProdObj,
   }
 
   toggleModal = () => {
@@ -44,15 +44,15 @@ class AddProduct extends React.Component {
   handleChanges = (e) => {
     const fieldName = e.target.name;
     const valueEntered = e.target.value;
-    const { newProdObj } = { ...this.state };
-    newProdObj[fieldName] = valueEntered;
-    this.setState({ newProdObj });
+    const tempProdObj = { ...this.state.newProdObj };
+    tempProdObj[fieldName] = valueEntered;
+    this.setState({ newProdObj: tempProdObj });
   }
 
   changeServiceType = (selectedType) => {
-    const { newProdObj } = { ...this.state };
-    newProdObj.serviceType = selectedType;
-    this.setState({ newProdObj });
+    const tempProdObj = { ...this.state.newProdObj };
+    tempProdObj.serviceType = selectedType;
+    this.setState({ newProdObj: tempProdObj });
   }
 
   addProductToDb = (e) => {
@@ -65,18 +65,20 @@ class AddProduct extends React.Component {
         this.setState({ newProdObj: blankNewProdFields });
         this.props.getProd();
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.error(err));
   }
 
   render() {
     const modal = this.state.showingModal;
 
-    const { ProductName,
+    const {
+      ProductName,
       description,
       price,
       serviceType,
       qty,
-      imgUrl } = this.state.newProdObj;
+      imgUrl,
+    } = this.state.newProdObj;
 
     return (
       <div className="AddProduct">
