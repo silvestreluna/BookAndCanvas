@@ -1,0 +1,13 @@
+header{
+    background-color:red;
+}
+main{
+    display:flex;
+    background-color:green;
+    align-items:stretch;
+    height:100%;
+    aside{
+        background-color:orange;
+        min-width:25%;
+    }
+}

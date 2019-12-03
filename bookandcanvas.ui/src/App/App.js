@@ -1,6 +1,6 @@
 import React from 'react';
-import LandingPage from '../components/LandingPage/LandingPage';
-import AddProduct from '../components/AddProduct/AddProduct'
+// import LandingPage from '../components/LandingPage/LandingPage';
+import Layout from '../components/Layout/Layout';
 import './App.scss';
 
 function App() {
@@ -10,7 +10,8 @@ function App() {
       <h2>Book & Canvas</h2>
       <header>
       </header>
-      <LandingPage />
+      {/* <LandingPage /> */}
+      <Layout/>
     </div>
   );
 }
