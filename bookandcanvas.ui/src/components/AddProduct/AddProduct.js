@@ -63,6 +63,7 @@ class AddProduct extends React.Component {
       .then(() => {
         this.toggleModal();
         this.setState({ newProdObj: blankNewProdFields });
+        this.props.getProd();
       })
       .catch(err => console.log(err));
   }

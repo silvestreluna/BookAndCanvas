@@ -9,11 +9,13 @@ class LandingPage extends React.Component{
     state = {
         Products: []
     }
-    
-    componentDidMount() {
+    getProducts = () => {
         getAllProducts().then(data => {
             this.setState({Products:data})
         })
+    }
+    componentDidMount() {
+       this.getProducts();
     }
     
     buildProductTile = () => this.state.Products.map(t => (<ProductTile data={t} key={t.id}></ProductTile>));
@@ -24,7 +26,7 @@ class LandingPage extends React.Component{
         return(
             <span className="main-wrapper">
                 <header>
-                    <AddProduct />
+                    <AddProduct getProd={this.getProducts} />
                 </header>
                 <section className="landingPage-container">
                 {this.buildProductTile()}  
