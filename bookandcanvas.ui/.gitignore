@@ -1,7 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/src/helpers/data/apiKeys.json
+/src/helpers/apiKeys.json
+
 
 /node_modules
 /.pnp
