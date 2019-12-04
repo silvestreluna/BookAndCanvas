@@ -9,6 +9,7 @@ import {
 } from 'reactstrap';
 import data from '../../helpers/data/addProductCalls';
 import Category from '../Category/Category';
+import AddImage from '../AddImage/AddImage';
 
 import './addProduct.scss';
 
@@ -77,7 +78,7 @@ class AddProduct extends React.Component {
       price,
       serviceType,
       qty,
-      imgUrl,
+      // imgUrl,
     } = this.state.newProdObj;
 
     return (
@@ -89,30 +90,29 @@ class AddProduct extends React.Component {
               <div className="content">
                 <FormGroup>
                   <Label for="productTitle">Title</Label>
-                  <Input type="text" id="productTitle" name="ProductName" value={ProductName} onChange={this.handleChanges} required/>
+                  <Input type="text" id="productTitle" name="ProductName" value={ProductName} onChange={this.handleChanges} required />
                 </FormGroup>
                 <FormGroup>
                   <Label for="productDescription">Description</Label>
-                  <Input type="textarea" id="productDescription" name="description" value={description} onChange={this.handleChanges} required/>
+                  <Input type="textarea" id="productDescription" name="description" value={description} onChange={this.handleChanges} required />
                 </FormGroup>
                 <FormGroup>
                   <Label for="product-qty">Quantity </Label>
-                  <Input type="number" name="qty" value={qty} onChange={this.handleChanges} required/>
+                  <Input type="number" name="qty" value={qty} onChange={this.handleChanges} required />
                 </FormGroup>
                 <div className="price-category">
                   <FormGroup>
                     <Label for="price">Price</Label>
-                    <Input type="number" step="any" id="price" name="price" value={price} onChange={this.handleChanges} required/>
+                    <Input type="number" step="any" id="price" name="price" value={price} onChange={this.handleChanges} required />
                   </FormGroup>
                   <FormGroup>
                     <Category
                       changeServiceType={this.changeServiceType}
-                      serviceType={serviceType}/>
+                      serviceType={serviceType} />
                   </FormGroup>
                 </div>
                 <FormGroup>
-                  <Label for="img-url">Image link</Label>
-                  <Input type="text" name="imgUrl" id="img-url" value={imgUrl} onChange={this.handleChanges} required />
+                  <AddImage />
                 </FormGroup>
                 <div className="add-cancel-btns">
                   <button type="submit">Add</button>
