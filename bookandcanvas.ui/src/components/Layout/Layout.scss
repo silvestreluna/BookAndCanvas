@@ -1,13 +1,37 @@
 header{
     background-color:red;
 }
-main{
+section{
     display:flex;
-    background-color:green;
-    align-items:stretch;
-    height:100%;
+    height:auto;
+    
+    
+    main{
+        display:flex;
+        background-color:green;
+        align-items:stretch;
+        height:90%;
+        position:fixed;
+        overflow:scroll;
+        width:75%;
+        right:0;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar{
+            display:none;
+        }
+        
+    }
     aside{
         background-color:orange;
         min-width:25%;
+        min-height:100%;
+        display:flex;
+        align-items:center;
+        position:fixed;
+        overflow:scroll;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar{
+            display:none;
+        }
     }
 }
