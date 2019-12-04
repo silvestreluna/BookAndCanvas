@@ -6,10 +6,6 @@ import './App.scss';
 function App() {
   return (
     <div className="App">
-
-      <h2>Book & Canvas</h2>
-      <header>
-      </header>
       {/* <LandingPage /> */}
       <Layout/>
     </div>
