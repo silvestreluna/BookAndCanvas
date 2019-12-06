@@ -1,4 +1,16 @@
-label {
-  color: black;
+@import '../../styles/colors.scss';
+
+label{
+  color: $color6;
   font-weight: bolder;
+}
+button{
+    background-color:$color1;
+    padding:8px 18px;
+    border-radius:4px;
+    border:none;
+    color:$color0;
+    text-shadow: 1px 1px 3px $color3;
+    font-size:14px;
+    font-weight:300;
 }

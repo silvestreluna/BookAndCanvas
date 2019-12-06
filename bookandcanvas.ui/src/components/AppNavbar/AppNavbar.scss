@@ -1,0 +1,12 @@
+@import '../../styles/colors.scss';
+
+nav{
+    display:flex;
+    justify-content: flex-start;
+    align-items:center;
+    background-color: $color1;
+    padding:20px;
+    .logoType{
+
+    }
+}

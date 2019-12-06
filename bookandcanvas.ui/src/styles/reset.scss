@@ -1,0 +1,273 @@
+/* HTML5 display-role reset for older browsers */
+@mixin reset-properties{
+    margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+html {
+	@include reset-properties;
+}
+body {
+	@include reset-properties;
+	line-height: 1;
+}
+div {
+	@include reset-properties;
+}
+span {
+	@include reset-properties;
+}
+applet {
+	@include reset-properties;
+}
+object {
+	@include reset-properties;
+}
+iframe {
+	@include reset-properties;
+}
+h1, h2, h3, h4, h5, h6 {
+	@include reset-properties;
+}
+
+p {
+	@include reset-properties;
+}
+blockquote {
+	@include reset-properties;
+	quotes: none;
+	&:before {
+		content: '';
+		content: none;
+	}
+	&:after {
+		content: '';
+		content: none;
+	}
+}
+pre {
+	@include reset-properties;
+}
+a {
+	@include reset-properties;
+}
+abbr {
+	@include reset-properties;
+}
+acronym {
+	@include reset-properties;
+}
+address {
+	@include reset-properties;
+}
+big {
+	@include reset-properties;
+}
+cite {
+	@include reset-properties;
+}
+code {
+	@include reset-properties;
+}
+del {
+	@include reset-properties;
+}
+dfn {
+	@include reset-properties;
+}
+em {
+	@include reset-properties;
+}
+img {
+	@include reset-properties;
+}
+ins {
+	@include reset-properties;
+}
+kbd {
+	@include reset-properties;
+}
+q {
+	@include reset-properties;
+	quotes: none;
+	&:before {
+		content: '';
+		content: none;
+	}
+	&:after {
+		content: '';
+		content: none;
+	}
+}
+s {
+	@include reset-properties;
+}
+samp {
+	@include reset-properties;
+}
+small {
+	@include reset-properties;
+}
+strike {
+	@include reset-properties;
+}
+strong {
+	@include reset-properties;
+}
+sub {
+	@include reset-properties;
+}
+sup {
+	@include reset-properties;
+}
+tt {
+	@include reset-properties;
+}
+var {
+	@include reset-properties;
+}
+b {
+	@include reset-properties;
+}
+u {
+	@include reset-properties;
+}
+i {
+	@include reset-properties;
+}
+center {
+	@include reset-properties;
+}
+dl {
+	@include reset-properties;
+}
+dt {
+	@include reset-properties;
+}
+dd {
+	@include reset-properties;
+}
+ol {
+	@include reset-properties;
+	list-style: none;
+}
+ul {
+	@include reset-properties;
+	list-style: none;
+}
+li {
+	@include reset-properties;
+}
+fieldset {
+	@include reset-properties;
+}
+form {
+	@include reset-properties;
+}
+label {
+	@include reset-properties;
+}
+legend {
+	@include reset-properties;
+}
+table {
+	@include reset-properties;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+caption {
+	@include reset-properties;
+}
+tbody {
+	@include reset-properties;
+}
+tfoot {
+	@include reset-properties;
+}
+thead {
+	@include reset-properties;
+}
+tr {
+	@include reset-properties;
+}
+th {
+	@include reset-properties;
+}
+td {
+	@include reset-properties;
+}
+article {
+	@include reset-properties;
+	display: block;
+}
+aside {
+	@include reset-properties;
+	display: block;
+}
+canvas {
+	@include reset-properties;
+}
+details {
+	@include reset-properties;
+	display: block;
+}
+embed {
+	@include reset-properties;
+}
+figure {
+	@include reset-properties;
+	display: block;
+}
+figcaption {
+	@include reset-properties;
+	display: block;
+}
+footer {
+	@include reset-properties;
+	display: block;
+}
+header {
+	@include reset-properties;
+	display: block;
+}
+hgroup {
+	@include reset-properties;
+	display: block;
+}
+menu {
+	@include reset-properties;
+	display: block;
+}
+nav {
+	@include reset-properties;
+	display: block;
+}
+output {
+	@include reset-properties;
+}
+ruby {
+	@include reset-properties;
+}
+section {
+	@include reset-properties;
+	display: block;
+}
+summary {
+	@include reset-properties;
+}
+time {
+	@include reset-properties;
+}
+mark {
+	@include reset-properties;
+}
+audio {
+	@include reset-properties;
+}
+video {
+	@include reset-properties;
+}
