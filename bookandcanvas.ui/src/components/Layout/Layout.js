@@ -3,6 +3,7 @@ import AddProduct from '../AddProduct/AddProduct';
 import getAllProducts from '../../helpers/data/productRequests'
 import './Layout.scss'
 import LandingPage from '../LandingPage/LandingPage';
+import ProfileAside from '../Profile/ProfileAside';
 
 class Layout extends React.Component{
     state={
@@ -29,7 +30,7 @@ class Layout extends React.Component{
                 </header>
                 <section>
                     <aside>
-                            <p>aside information</p>
+                            <p><ProfileAside /></p>
                     </aside>
                     <main>
 
