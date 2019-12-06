@@ -2,18 +2,21 @@ import React from 'react';
 
 import './ProductTile.scss';
 
-class ProductTile extends React.Component{
-    render(){
-         var productTileStyle = {
-            backgroundImage:`url(${this.props.data.imgUrl})`,
-            backgroundRepeat: "no-Repeat",
-            backgroundPosition:"center",
-            backgroundSize:"cover"
+class ProductTile extends React.Component {
+  render() {
+    const productTileStyle = {
+      backgroundImage: `url(${this.props.data.imgUrl})`,
+      backgroundRepeat: 'no-Repeat',
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
 
-        }
-        return(
+    };
+    return (
             <React.Fragment>
                 <div style={productTileStyle} className="productTile">
+                    <div className="btn-wrapper">
+                        <button className="delete-btn">Deelte</button>
+                    </div>
                     <div className="info-wrapper">
                         <div className="wrapper">
                             <h4>{this.props.data.productName}</h4>
@@ -22,10 +25,10 @@ class ProductTile extends React.Component{
                         <div className="wrapper">
                             <h6>{this.props.data.description}</h6>
                         </div>
-                    </div>            
+                    </div>
                 </div>
             </React.Fragment>
-        )
-    }
+    );
+  }
 }
 export default ProductTile;
