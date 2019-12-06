@@ -56,6 +56,12 @@ class AddProduct extends React.Component {
     this.setState({ newProdObj: tempProdObj });
   }
 
+  setProdImgUrl = (imgUrl) => {
+    const tempProdObj = { ...this.state.newProdObj };
+    tempProdObj.imgUrl = imgUrl;
+    this.setState({ newProdObj: tempProdObj });
+  }
+
   addProductToDb = (e) => {
     e.preventDefault();
     const prodObjToPostInDb = { ...this.state.newProdObj };
@@ -78,7 +84,7 @@ class AddProduct extends React.Component {
       price,
       serviceType,
       qty,
-      // imgUrl,
+      imgUrl,
     } = this.state.newProdObj;
 
     return (
@@ -112,7 +118,15 @@ class AddProduct extends React.Component {
                   </FormGroup>
                 </div>
                 <FormGroup>
-                  <AddImage />
+                  {
+                    (imgUrl)
+                      ? (
+                        <img src={imgUrl} alt="product img" />
+                      )
+                      : (
+                        <AddImage setProdImgUrl={this.setProdImgUrl} />
+                      )
+                  }
                 </FormGroup>
                 <div className="add-cancel-btns">
                   <button type="submit">Add</button>

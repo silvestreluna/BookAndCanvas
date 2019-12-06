@@ -11,7 +11,6 @@ class AddImage extends React.Component {
 
   handleChange = (e) => {
     const img = e.target.files[0];
-    console.error(img);
     if (img) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -21,18 +20,27 @@ class AddImage extends React.Component {
     }
   };
 
-  uploadImg = () => {
-    console.error('working?');
+  uploadImgToImgbb = () => {
     const { imgForImgbb } = this.state;
     const dataForm = new FormData();
     dataForm.append('image', imgForImgbb);
     data.addImgToImgBB(dataForm)
-      .then((resp) => console.error(resp.data))
+      .then((resp) => {
+        const imgUrl = resp.data.data.display_url;
+        this.props.setProdImgUrl(imgUrl);
+      })
       .catch((error) => console.error(error));
   }
 
   render() {
     const { tempLocalImgDisplay } = this.state;
+
+    const displayLabel = () => {
+      if (tempLocalImgDisplay) {
+        return <Label for="img-url">Change your Image</Label>;
+      }
+      return <Label for="img-url">Select an Image to upload</Label>;
+    };
 
     return (
       <div className="AddImage">
@@ -40,7 +48,7 @@ class AddImage extends React.Component {
           {
             (tempLocalImgDisplay)
               ? (
-                <img src={this.state.tempLocalImgDisplay} alt="selected img" />
+                <img src={tempLocalImgDisplay} alt="selected img" />
               )
               : (
                 ''
@@ -49,12 +57,15 @@ class AddImage extends React.Component {
         </div>
         <div className="file-upload-input">
           <Input type="file" name="imgUrl" id="img-url" onChange={this.handleChange} />
-          <Label for="img-url">Select an Image to upload</Label>
+          {
+            displayLabel()
+          }
+          {/* <Label for="img-url">Select an Image to upload</Label> */}
         </div>
         {
           (tempLocalImgDisplay)
             ? (
-              <Input type="button" className="btn btn-primary" value="Upload Image" id="upload" name="btn-to-upload" onClick={this.uploadImg} />
+              <Input type="button" className="btn btn-primary" value="I want this image" id="upload" name="btn-to-upload" onClick={this.uploadImgToImgbb} />
             )
             : (
               ''
