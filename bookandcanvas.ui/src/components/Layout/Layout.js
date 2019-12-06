@@ -1,8 +1,11 @@
 import React from 'react';
 import AddProduct from '../AddProduct/AddProduct';
 import getAllProducts from '../../helpers/data/productRequests'
-import './Layout.scss'
 import LandingPage from '../LandingPage/LandingPage';
+import AppNavbar from '../AppNavbar/AppNavbar';
+
+
+import './Layout.scss'
 
 class Layout extends React.Component{
     state={
@@ -22,8 +25,8 @@ class Layout extends React.Component{
         return(
             <React.Fragment>
                 <header>
-                    <nav><h4>Book & Canvas</h4></nav>
-                    <div class="secondarymenu">
+                    <AppNavbar></AppNavbar>
+                    <div className="secondarymenu">
                         <AddProduct getProd={this.getProducts} />
                     </div>
                 </header>
@@ -32,7 +35,6 @@ class Layout extends React.Component{
                             <p>aside information</p>
                     </aside>
                     <main>
-
                         <LandingPage Products={this.state.Products}></LandingPage>
                     </main>
                 </section>

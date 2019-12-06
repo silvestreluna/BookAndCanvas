@@ -10,11 +10,11 @@ class LandingPage extends React.Component{
     
     render(){
         return(
-            <span className="main-wrapper">
+            <React.Fragment>
                 <section className="landingPage-container">
                 {this.buildProductTile()}  
                 </section>
-            </span>
+            </React.Fragment>
         )
     }
 }
