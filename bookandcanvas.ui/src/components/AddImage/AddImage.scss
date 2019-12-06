@@ -1,7 +1,28 @@
 .AddImage {
-  display: block;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin: 8px;
+  padding: 10px;
 }
 
 img {
   height: 60px;
+}
+
+.file-upload-input {
+  justify-content: space-around;
+  text-align: center;
+  width: 50%;
+  background: #39D2B4;
+  margin: 10px;
+
+  label {
+    color: #f1f1f1;
+    font-weight: bolder;
+  }
+}
+
+input[type="file"] {
+  display: none;
 }
