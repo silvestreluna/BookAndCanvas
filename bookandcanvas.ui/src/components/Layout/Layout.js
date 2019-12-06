@@ -4,8 +4,9 @@ import getAllProducts from '../../helpers/data/productRequests'
 import LandingPage from '../LandingPage/LandingPage';
 import AppNavbar from '../AppNavbar/AppNavbar';
 
-
+import ProfileAside from '../Profile/ProfileAside';
 import './Layout.scss'
+
 
 class Layout extends React.Component{
     state={
@@ -32,7 +33,7 @@ class Layout extends React.Component{
                 </header>
                 <section>
                     <aside>
-                            <p>aside information</p>
+                            <p><ProfileAside /></p>
                     </aside>
                     <main>
                         <LandingPage Products={this.state.Products}></LandingPage>
