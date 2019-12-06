@@ -1,4 +1,5 @@
 import React from 'react';
+import deleteBtn from '../../assets/images/delete-icon.svg';
 
 import './ProductTile.scss';
 
@@ -15,7 +16,7 @@ class ProductTile extends React.Component {
             <React.Fragment>
                 <div style={productTileStyle} className="productTile">
                     <div className="btn-wrapper">
-                        <button className="delete-btn">Deelte</button>
+                        <img src={deleteBtn} alt="delete-icon" className="delete-btn"/>
                     </div>
                     <div className="info-wrapper">
                         <div className="wrapper">

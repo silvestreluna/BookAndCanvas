@@ -1,3 +1,5 @@
+@import "../../styles/colors.scss";
+
 .productTile{
     position:relative;
     padding:20px;
@@ -11,12 +13,21 @@
 
 }
 .btn-wrapper{
-    display: none;
-}
-.productTile:hover .btn-wrapper {
     display: flex;
     justify-content: flex-end;
 }
+.delete-btn {
+    display: none;
+}
+.productTile:hover .delete-btn {
+    display: block;
+    background-color: $color1;
+    padding: 5px;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+}
+
 .info-wrapper{
     position:absolute;
     bottom:0;
