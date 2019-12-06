@@ -5,10 +5,11 @@ import {
   Form,
   FormGroup,
   Label,
-  Input
+  Input,
 } from 'reactstrap';
-import data from '../../helpers/data/addProductCalls'
-import Category from '../Category/Category'
+import data from '../../helpers/data/addProductCalls';
+import Category from '../Category/Category';
+import AddImage from '../AddImage/AddImage';
 
 import './addProduct.scss';
 
@@ -18,7 +19,7 @@ const newProdObj = {
   price: '',
   serviceType: '',
   imgUrl: '',
-  qty: ''
+  qty: '',
 };
 
 
@@ -28,13 +29,13 @@ const blankNewProdFields = {
   price: '',
   serviceType: '',
   imgUrl: '',
-  qty: ''
+  qty: '',
 };
 
 class AddProduct extends React.Component {
   state = {
     showingModal: false,
-    newProdObj: newProdObj,
+    newProdObj,
   }
 
   toggleModal = () => {
@@ -44,15 +45,21 @@ class AddProduct extends React.Component {
   handleChanges = (e) => {
     const fieldName = e.target.name;
     const valueEntered = e.target.value;
-    const { newProdObj } = { ...this.state };
-    newProdObj[fieldName] = valueEntered;
-    this.setState({ newProdObj });
+    const tempProdObj = { ...this.state.newProdObj };
+    tempProdObj[fieldName] = valueEntered;
+    this.setState({ newProdObj: tempProdObj });
   }
 
   changeServiceType = (selectedType) => {
-    const { newProdObj } = { ...this.state };
-    newProdObj.serviceType = selectedType;
-    this.setState({ newProdObj });
+    const tempProdObj = { ...this.state.newProdObj };
+    tempProdObj.serviceType = selectedType;
+    this.setState({ newProdObj: tempProdObj });
+  }
+
+  setProdImgUrl = (imgUrl) => {
+    const tempProdObj = { ...this.state.newProdObj };
+    tempProdObj.imgUrl = imgUrl;
+    this.setState({ newProdObj: tempProdObj });
   }
 
   addProductToDb = (e) => {
@@ -65,18 +72,20 @@ class AddProduct extends React.Component {
         this.setState({ newProdObj: blankNewProdFields });
         this.props.getProd();
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.error(err));
   }
 
   render() {
     const modal = this.state.showingModal;
 
-    const { ProductName,
+    const {
+      ProductName,
       description,
       price,
       serviceType,
       qty,
-      imgUrl } = this.state.newProdObj;
+      imgUrl,
+    } = this.state.newProdObj;
 
     return (
       <div className="AddProduct">
@@ -87,30 +96,37 @@ class AddProduct extends React.Component {
               <div className="content">
                 <FormGroup>
                   <Label for="productTitle">Title</Label>
-                  <Input type="text" id="productTitle" name="ProductName" value={ProductName} onChange={this.handleChanges} required/>
+                  <Input type="text" id="productTitle" name="ProductName" value={ProductName} onChange={this.handleChanges} required />
                 </FormGroup>
                 <FormGroup>
                   <Label for="productDescription">Description</Label>
-                  <Input type="textarea" id="productDescription" name="description" value={description} onChange={this.handleChanges} required/>
+                  <Input type="textarea" id="productDescription" name="description" value={description} onChange={this.handleChanges} required />
                 </FormGroup>
                 <FormGroup>
                   <Label for="product-qty">Quantity </Label>
-                  <Input type="number" name="qty" value={qty} onChange={this.handleChanges} required/>
+                  <Input type="number" name="qty" value={qty} onChange={this.handleChanges} required />
                 </FormGroup>
                 <div className="price-category">
                   <FormGroup>
                     <Label for="price">Price</Label>
-                    <Input type="number" step="any" id="price" name="price" value={price} onChange={this.handleChanges} required/>
+                    <Input type="number" step="any" id="price" name="price" value={price} onChange={this.handleChanges} required />
                   </FormGroup>
                   <FormGroup>
                     <Category
                       changeServiceType={this.changeServiceType}
-                      serviceType={serviceType}/>
+                      serviceType={serviceType} />
                   </FormGroup>
                 </div>
                 <FormGroup>
-                  <Label for="img-url">Image link</Label>
-                  <Input type="text" name="imgUrl" id="img-url" value={imgUrl} onChange={this.handleChanges} required />
+                  {
+                    (imgUrl)
+                      ? (
+                        <img src={imgUrl} alt="product img" />
+                      )
+                      : (
+                        <AddImage setProdImgUrl={this.setProdImgUrl} />
+                      )
+                  }
                 </FormGroup>
                 <div className="add-cancel-btns">
                   <button type="submit">Add</button>

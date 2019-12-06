@@ -1,7 +1,8 @@
 @import '../../styles/colors.scss';
 
 label{
-    color:red;
+  color: $color6;
+  font-weight: bolder;
 }
 button{
     background-color:$color1;

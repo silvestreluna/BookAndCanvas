@@ -194,3 +194,26 @@ Insert into Product (ServiceType, Description, SellerId, ProductName, Price, Img
 values (1, 'This is a beautiful art', 1, 'Painting', 13.99, 'www.imgurl.com/1', '12-05-2019', 3),
 		(2, 'This is a beautiful art too', 2, 'Book', 21.99, 'www.imgurl.com/2', '12-05-2019', 2),
 		(3, 'This is a beautiful art too too', 3, 'Music', 59.99, 'www.imgurl.com/3', '12-05-2019', 31)
+
+
+
+--**** THIS IS FOR IMAGES TABLE
+use BookAndCanvas
+
+create table Images
+(
+	[Id] int primary key identity(1,1),
+	[userId] int not null,
+	productId int not null
+)
+
+use BookAndCanvas
+alter table Images 
+	add constraint FK_Images_ProductId
+					foreign key(ProductId)
+					references Product(Id)
+
+alter table Images 
+	add constraint FK_Images_userId
+					foreign key(Id)
+					references Users(Id)
