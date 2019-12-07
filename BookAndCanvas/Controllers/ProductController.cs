@@ -35,5 +35,11 @@ namespace BookAndCanvas.Controllers
         {
             return _repo.GetAllProducts();
         }
+
+        [HttpDelete("{prodId}")]
+        public void DeleteProduct(int prodId)
+        {
+            _repo.DeleleteProdById(prodId);
+        }
     }
 }

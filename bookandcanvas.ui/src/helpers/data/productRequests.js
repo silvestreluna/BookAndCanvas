@@ -8,6 +8,6 @@ const getAllProducts = () => new Promise((resolve, reject) => {
     .catch((err) => reject(err));
 });
 
-const deleteProd = () => axios.delete();
+const deleteProd = (productId) => axios.delete(`${baseUrl}/product/${productId}`);
 
-export default getAllProducts;
+export default { getAllProducts, deleteProd };

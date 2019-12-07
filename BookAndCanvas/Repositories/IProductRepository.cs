@@ -11,6 +11,9 @@ namespace BookAndCanvas.Repositories
         {
             Product AddNewProduct(NewProductDTO newProduct);
             IEnumerable<Product> GetAllProducts();
-        }
+
+         bool DeleleteProdById(int productId);
+
     }
+}
 

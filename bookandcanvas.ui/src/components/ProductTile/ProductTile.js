@@ -5,7 +5,8 @@ import './ProductTile.scss';
 
 class ProductTile extends React.Component {
     deleteProduct = () => {
-      console.error(this.props.data.id);
+      const prodId = this.props.data.id;
+      this.props.deleteProdById(prodId);
     }
 
     render() {
