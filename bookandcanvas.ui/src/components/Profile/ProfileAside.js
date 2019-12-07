@@ -24,8 +24,8 @@ export default class ProfileAside extends React.Component {
         <img className="useravatar" src={this.state.user.imgUrl}/>
         <h3 className="userfname">{this.state.user.fName}</h3>
         <h3 className="userlname">{this.state.user.lName}</h3>
-        <h5 className="useremail">{this.state.user.email}</h5>
-        <h5 className="userphone">{this.state.user.phone}</h5>
+        <h6 className="useremail">{this.state.user.email}</h6>
+        <h6 className="userphone">{this.state.user.phone}</h6>
         <p className="userbio">{this.state.user.bio}</p>
       </div>
     )
