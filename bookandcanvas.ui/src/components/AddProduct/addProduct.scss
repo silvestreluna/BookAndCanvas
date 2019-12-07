@@ -13,4 +13,11 @@ button{
     text-shadow: 1px 1px 3px $color3;
     font-size:14px;
     font-weight:300;
+    outline:none;
+    &:visited{
+      outline:none;
+    }
+    &:focus{
+      outline:none;
+    }
 }
