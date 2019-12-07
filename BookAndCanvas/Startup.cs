@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using BookAndCanvas.Repositories;
@@ -26,6 +27,8 @@ namespace BookAndCanvas
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var connectionString = Configuration.GetValue<string>("ConnectionString");
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
@@ -37,6 +40,7 @@ namespace BookAndCanvas
 
             services.AddScoped<IProductRepository, ProductRepo>();
             services.AddScoped<IUsersRepository, UsersRepo>();
+            services.AddTransient<SqlConnection>(provider => new SqlConnection(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
