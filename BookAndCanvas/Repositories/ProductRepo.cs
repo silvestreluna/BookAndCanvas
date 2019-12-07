@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using BookAndCanvas.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookAndCanvas.Repositories
 {
@@ -33,6 +34,18 @@ namespace BookAndCanvas.Repositories
             {
                 var products = db.Query<Product>(@"Select * from Product");
                 return products.ToList();
+            }
+        }
+        public ActionResult<Product> GetProductById(int id)
+        {
+            using (var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"select *
+                            from Product
+                            where Product.Id = @ProductId";
+
+                var user = db.QueryFirst<Product>(sql, new { ProductId = id });
+                return user;
             }
         }
     }
