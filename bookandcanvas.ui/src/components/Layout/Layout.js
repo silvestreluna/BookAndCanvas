@@ -1,29 +1,30 @@
 import React from 'react';
 import AddProduct from '../AddProduct/AddProduct';
-import getAllProducts from '../../helpers/data/productRequests'
+import getAllProducts from '../../helpers/data/productRequests';
 import LandingPage from '../LandingPage/LandingPage';
 import AppNavbar from '../AppNavbar/AppNavbar';
 
 import ProfileAside from '../Profile/ProfileAside';
-import './Layout.scss'
+import './Layout.scss';
 
 
-class Layout extends React.Component{
+class Layout extends React.Component {
     state={
-        Products: []
+      Products: [],
     }
 
     getProducts = () => {
-        getAllProducts().then(data => {
-            this.setState({Products:data})
-        })
-    }
-    componentDidMount() {
-       this.getProducts();
+      getAllProducts().then((data) => {
+        this.setState({ Products: data });
+      });
     }
 
-    render(){
-        return(
+    componentDidMount() {
+      this.getProducts();
+    }
+
+    render() {
+      return (
             <React.Fragment>
                 <header>
                     <AppNavbar></AppNavbar>
@@ -40,7 +41,7 @@ class Layout extends React.Component{
                     </main>
                 </section>
             </React.Fragment>
-        );
+      );
     }
 }
 

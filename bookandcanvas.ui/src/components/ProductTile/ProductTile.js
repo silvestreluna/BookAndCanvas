@@ -4,19 +4,22 @@ import deleteBtn from '../../assets/images/delete-icon.svg';
 import './ProductTile.scss';
 
 class ProductTile extends React.Component {
-  render() {
-    const productTileStyle = {
-      backgroundImage: `url(${this.props.data.imgUrl})`,
-      backgroundRepeat: 'no-Repeat',
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
+    deleteProduct = () => {
+      console.error(this.props.data.id);
+    }
 
-    };
-    return (
+    render() {
+      const productTileStyle = {
+        backgroundImage: `url(${this.props.data.imgUrl})`,
+        backgroundRepeat: 'no-Repeat',
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+      };
+      return (
             <React.Fragment>
                 <div style={productTileStyle} className="productTile">
                     <div className="btn-wrapper">
-                        <img src={deleteBtn} alt="delete-icon" className="delete-btn"/>
+                        <img src={deleteBtn} alt="delete-icon" className="delete-btn" onClick={this.deleteProduct}/>
                     </div>
                     <div className="info-wrapper">
                         <div className="wrapper">
@@ -29,7 +32,7 @@ class ProductTile extends React.Component {
                     </div>
                 </div>
             </React.Fragment>
-    );
-  }
+      );
+    }
 }
 export default ProductTile;
