@@ -72,6 +72,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ![Menu Displayed](./src/assets/mockups/BookAndCanvas-06.png)
 
+![Product Details Page](./src/assets/mockups/BookAndCanvas-10.png)
+
 ![Profile Page](./src/assets/mockups/BookAndCanvas-02.png)
 
 ![Edit Profile Page](./src/assets/mockups/BookAndCanvas-08.png)

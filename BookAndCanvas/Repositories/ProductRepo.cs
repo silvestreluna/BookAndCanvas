@@ -36,6 +36,7 @@ namespace BookAndCanvas.Repositories
                 return products.ToList();
             }
         }
+
         public ActionResult<Product> GetProductById(int id)
         {
             using (var db = new SqlConnection(_connectionString))
@@ -44,8 +45,17 @@ namespace BookAndCanvas.Repositories
                             from Product
                             where Product.Id = @ProductId";
 
-                var user = db.QueryFirst<Product>(sql, new { ProductId = id });
+                var user = db.QueryFirst<Product>(sql, new {ProductId = id});
                 return user;
+            }
+        }
+
+        public bool DeleleteProdById(int productId)
+        {
+            using (var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"DELETE FROM PRODUCT WHERE Id = @productId";
+                return db.Execute(sql, new { productId}) == 1;
             }
         }
     }
