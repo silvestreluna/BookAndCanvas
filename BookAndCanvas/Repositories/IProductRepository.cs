@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BookAndCanvas.DTOs;
 using BookAndCanvas.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BookAndCanvas.Repositories
 {
@@ -11,6 +12,7 @@ namespace BookAndCanvas.Repositories
         {
             Product AddNewProduct(NewProductDTO newProduct);
             IEnumerable<Product> GetAllProducts();
+            ActionResult<Product> GetProductById(int id);
         }
     }
 

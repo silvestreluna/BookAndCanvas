@@ -35,5 +35,10 @@ namespace BookAndCanvas.Controllers
         {
             return _repo.GetAllProducts();
         }
-    }
+        [HttpGet("product/{id}")]
+        public IActionResult GetProduct(int id)
+            {
+                return Ok(_repo.GetProductById(id));
+            }
+        }
 }
