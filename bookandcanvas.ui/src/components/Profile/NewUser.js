@@ -43,7 +43,7 @@ class NewUser extends React.Component {
   addUserToDb = (e) => {
     e.preventDefault();
     const userObjToPostInDb = { ...this.state.newUserObj };
-    data.addUser(userObjToPostInDb)
+    data.addNewUser(userObjToPostInDb)
       .then(() => {
         this.setState({ newUserObj: blankNewUserFields });
         this.props.getUser();
