@@ -5,7 +5,7 @@ import {
   Label,
   Input,
 } from 'reactstrap';
-import data from '../../helpers/data/addProductCalls';
+import data from '../../helpers/data/addUser';
 import './NewUser.scss';
 
 const newUserObj = {
@@ -43,7 +43,7 @@ class NewUser extends React.Component {
   addUserToDb = (e) => {
     e.preventDefault();
     const userObjToPostInDb = { ...this.state.newUserObj };
-    data.addNewUser(userObjToPostInDb)
+    data.addUser(userObjToPostInDb)
       .then(() => {
         this.setState({ newUserObj: blankNewUserFields });
         this.props.getUser();
