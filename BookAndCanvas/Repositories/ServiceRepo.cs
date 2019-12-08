@@ -1,26 +1,16 @@
-﻿using BookAndCanvas.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using BookAndCanvas.Models;
 using Dapper;
 
-namespace BookAndCanvas.Repositories
-{
-    public class ServiceRepo
-    {
-        string _connectionString = "Server=localhost;Database=BookAndCanvas;Trusted_Connection=True";
+namespace BookAndCanvas.Repositories {
+  public class ServiceRepo {
+    public IEnumerable<Service> GetAllServices() {
+      using (var db = new SqlConnection(RepositoryConstants.ConnectionString)) {
+        var sql = "SELECT * FROM [Service]";
 
-        public IEnumerable<Service> GetAllServices()
-        {
-            using (var db = new SqlConnection(_connectionString))
-            {
-                var sql = "SELECT * FROM [Service]";
-
-                return db.Query<Service>(sql);
-            }
-        }
-
+        return db.Query<Service>(sql);
+      }
     }
+  }
 }
