@@ -1,4 +1,5 @@
 import React from 'react';
+import './ProfileAside.scss';
 
 import axios from 'axios';
 
@@ -8,7 +9,7 @@ export default class ProfileAside extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`https://localhost:44350/api/users/1`)
+    axios.get('https://localhost:44350/api/users/1')
       .then(res => {
         const user = res.data;
         this.setState({ user: { ...user } });
@@ -17,10 +18,16 @@ export default class ProfileAside extends React.Component {
 
   render() {
 
-    // const displayName = this.state.user.map(name => <ul><li>{name.name}</li></ul>)
     return (
-      // displayName()
-      <div><h1>{this.state.user.fName}</h1><h1>{this.state.user.lName}</h1></div>
+      // Return user info
+      <div className="userinfo">
+        <img className="useravatar" src={this.state.user.imgUrl}/>
+        <h3 className="userfname">{this.state.user.fName}</h3>
+        <h3 className="userlname">{this.state.user.lName}</h3>
+        <h6 className="useremail">{this.state.user.email}</h6>
+        <h6 className="userphone">{this.state.user.phone}</h6>
+        <p className="userbio">{this.state.user.bio}</p>
+      </div>
     )
   }
 }

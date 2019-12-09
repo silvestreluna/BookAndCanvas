@@ -42,7 +42,7 @@ class Layout extends React.Component {
                 </header>
                 <section>
                     <aside>
-                            <p><ProfileAside /></p>
+                            <ProfileAside />
                     </aside>
                     <main>
                         <LandingPage
