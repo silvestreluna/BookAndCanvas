@@ -1,11 +1,10 @@
-﻿using BookAndCanvas.DTOs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
-using Dapper;
+using BookAndCanvas.DTOs;
 using BookAndCanvas.Models;
+using Dapper;
 
 namespace BookAndCanvas.Repositories
 {
@@ -28,7 +27,7 @@ namespace BookAndCanvas.Repositories
 
         public IEnumerable<Product> GetAllProducts()
         {
-            
+
             using (var db = new SqlConnection(_connectionString))
             {
                 var products = db.Query<Product>(@"Select * from Product");
