@@ -1,6 +1,6 @@
 import React from 'react';
 import AddProduct from '../AddProduct/AddProduct';
-import getAllProducts from '../../helpers/data/productRequests';
+import productRequest from '../../helpers/data/productRequests';
 import LandingPage from '../LandingPage/LandingPage';
 import AppNavbar from '../AppNavbar/AppNavbar';
 
@@ -14,9 +14,17 @@ class Layout extends React.Component {
     }
 
     getProducts = () => {
-      getAllProducts().then((data) => {
+      productRequest.getAllProducts().then((data) => {
         this.setState({ Products: data });
       });
+    }
+
+    deleteProdById = (prodId) => {
+      productRequest.deleteProd(prodId)
+        .then(() => {
+          this.getProducts();
+        })
+        .catch((error) => console.error(error));
     }
 
     componentDidMount() {
@@ -37,7 +45,10 @@ class Layout extends React.Component {
                             <p><ProfileAside /></p>
                     </aside>
                     <main>
-                        <LandingPage Products={this.state.Products}></LandingPage>
+                        <LandingPage
+                        Products={this.state.Products}
+                        deleteProdById={this.deleteProdById}
+                        ></LandingPage>
                     </main>
                 </section>
             </React.Fragment>

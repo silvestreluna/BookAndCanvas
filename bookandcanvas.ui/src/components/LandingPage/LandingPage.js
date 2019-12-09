@@ -4,7 +4,7 @@ import ProductTile from '../ProductTile/ProductTile';
 import './LandingPage.scss';
 
 class LandingPage extends React.Component {
-    buildProductTile = () => this.props.Products.map((t) => (<ProductTile data={t} key={t.id}></ProductTile>));
+    buildProductTile = () => this.props.Products.map((t) => (<ProductTile data={t} key={t.id} deleteProdById={this.props.deleteProdById}></ProductTile>));
 
 
     render() {

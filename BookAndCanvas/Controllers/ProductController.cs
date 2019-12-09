@@ -30,15 +30,23 @@ namespace BookAndCanvas.Controllers
             var createdProduct = _repo.AddNewProduct(newProduct);
             return Ok(createdProduct);
         }
+
         [HttpGet]
         public IEnumerable<Product> GetAll()
         {
             return _repo.GetAllProducts();
         }
-        [HttpGet("product/{id}")]
-        public IActionResult GetProduct(int id)
-            {
-                return Ok(_repo.GetProductById(id));
-            }
+
+        [HttpGet("{id}")]
+        public ActionResult<Product> GetProduct(int id)
+        {
+            return _repo.GetProductById(id);
         }
+        
+        [HttpDelete("{prodId}")]
+        public void DeleteProduct(int prodId)
+        {
+            _repo.DeleleteProdById(prodId);
+        }
+    }
 }
