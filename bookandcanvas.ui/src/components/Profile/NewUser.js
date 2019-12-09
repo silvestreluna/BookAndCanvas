@@ -91,11 +91,11 @@ class NewUser extends React.Component {
                 <Input type="textarea" id="bio" name="bio" value={bio} onChange={this.handleChanges} required />
               </FormGroup>
               </div>
-
-                <div className="add-cancel-btns">
+              <FormGroup>
+                <div className="add--btn">
                   <button type="submit">Add</button>
-                  <button onClick={this.toggleModal}>Cancel</button>
                 </div>
+              </FormGroup>
             </Form>
       </div>
     );
