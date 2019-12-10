@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default class ProfileAside extends React.Component {
   state = {
-    user: [],
+    user: {},
   }
 
   componentDidMount() {
@@ -13,11 +13,10 @@ export default class ProfileAside extends React.Component {
       .then(res => {
         const user = res.data;
         this.setState({ user: { ...user } });
-      })
+      });
   }
 
   render() {
-
     return (
       // Return user info
       <div className="userinfo">
@@ -27,7 +26,8 @@ export default class ProfileAside extends React.Component {
         <h6 className="useremail">{this.state.user.email}</h6>
         <h6 className="userphone">{this.state.user.phone}</h6>
         <p className="userbio">{this.state.user.bio}</p>
+        <button type="submit" onClick={this.user}>Edit</button>
       </div>
-    )
+    );
   }
 }
