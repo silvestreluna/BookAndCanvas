@@ -55,7 +55,7 @@ class EditProductForm extends React.Component {
     data.editProduct(prodObjToPostInDb, productId)
       .then(() => {
         this.toggleModal();
-        // this.props.getProd();
+        this.props.getProd();
       })
       .catch((err) => console.error(err));
   }
@@ -74,7 +74,7 @@ class EditProductForm extends React.Component {
 
     return (
       <div className="AddProduct">
-        <img src={editIcon} alt="edit button" className="edit-btn" onClick={this.toggleModal}/>
+        <img src={editIcon} alt="edit button" className="edit-btn" onClick={this.toggleModal} />
 
         <Modal isOpen={modal} centered={true} >
           <ModalBody>
@@ -104,7 +104,7 @@ class EditProductForm extends React.Component {
                   </FormGroup>
                 </div>
                 <FormGroup>
-                  {
+                  {/* {
                     (imgUrl)
                       ? (
                         <img src={imgUrl} alt="product img" />
@@ -112,7 +112,9 @@ class EditProductForm extends React.Component {
                       : (
                         <AddImage setProdImgUrl={this.setProdImgUrl} />
                       )
-                  }
+                  } */}
+                  <img src={imgUrl} alt="product img" />
+                  <AddImage setProdImgUrl={this.setProdImgUrl} />
                 </FormGroup>
                 <div className="add-cancel-btns">
                   <button type="submit">Update</button>

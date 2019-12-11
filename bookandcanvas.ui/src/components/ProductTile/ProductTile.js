@@ -14,11 +14,6 @@ class ProductTile extends React.Component {
     this.props.deleteProdById(prodId);
   }
 
-  //  editProduct = () => {
-  //    console.error('clicked', !this.state.isEditing);
-  //    this.setState({ isEditing: !this.state.isEditing });
-  //  };
-
   render() {
     const productTileStyle = {
       backgroundImage: `url(${this.props.data.imgUrl})`,
@@ -27,7 +22,7 @@ class ProductTile extends React.Component {
       backgroundSize: 'cover',
     };
 
-    const EditButton = () => <EditProductForm newProdObj={this.props.data}/>;
+    const EditButton = () => <EditProductForm newProdObj={this.props.data} getProd={this.props.getProd} />;
 
     return (
       <React.Fragment>
