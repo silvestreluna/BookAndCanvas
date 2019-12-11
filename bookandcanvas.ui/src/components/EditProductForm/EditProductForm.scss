@@ -21,3 +21,15 @@ button{
       outline:none;
     }
 }
+
+.cancel-btn-wrapper {
+  width: 45%;
+}
+
+.add-btn-wrapper {
+  float: left;
+  width: 20%;
+  #submit-btm {
+    background-color: $color10;
+  }
+}

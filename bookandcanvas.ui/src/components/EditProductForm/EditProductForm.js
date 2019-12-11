@@ -104,24 +104,17 @@ class EditProductForm extends React.Component {
                   </FormGroup>
                 </div>
                 <FormGroup>
-                  {/* {
-                    (imgUrl)
-                      ? (
-                        <img src={imgUrl} alt="product img" />
-                      )
-                      : (
-                        <AddImage setProdImgUrl={this.setProdImgUrl} />
-                      )
-                  } */}
                   <img src={imgUrl} alt="product img" />
                   <AddImage setProdImgUrl={this.setProdImgUrl} />
                 </FormGroup>
-                <div className="add-cancel-btns">
-                  <button type="submit">Update</button>
-                  <button onClick={this.toggleModal}>Cancel</button>
+                <div className="add-btn-wrapper">
+                  <button id="submit-btm" type="submit">Update</button>
                 </div>
               </div>
             </Form>
+            <div className="cancel-btn-wrapper">
+              <button className="cancel-btn" onClick={this.toggleModal}>Cancel</button>
+            </div>
           </ModalBody>
         </Modal>
       </div>
