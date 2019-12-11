@@ -1,11 +1,31 @@
 import React from 'react';
+
+import { Link, withRouter, Redirect } from 'react-router-dom';
 import './ProfileAside.scss';
-
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import editUser from './EditUser'
 
-export default class ProfileAside extends React.Component {
+import userShape from '../../helpers/Propz/UserShape';
+
+
+class ProfileAside extends React.Component {
   state = {
     user: {},
+    moveToEdit: false,
+    show: false,
+  }
+
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
+
+  static propTypes = {
+    user: userShape.userShape,
   }
 
   componentDidMount() {
@@ -17,6 +37,12 @@ export default class ProfileAside extends React.Component {
   }
 
   render() {
+    const { user } = this.state;
+
+    if (this.state.moveToEdit) {
+      return <Redirect to="/editUser"/>;
+    }
+
     return (
       // Return user info
       <div className="userinfo">
@@ -26,8 +52,10 @@ export default class ProfileAside extends React.Component {
         <h6 className="useremail">{this.state.user.email}</h6>
         <h6 className="userphone">{this.state.user.phone}</h6>
         <p className="userbio">{this.state.user.bio}</p>
-        <button type="submit" onClick={this.user}>Edit</button>
+        <Link to='/editUser' className="btn btn-primary">EDIT</Link>
       </div>
     );
   }
 }
+
+export default withRouter(ProfileAside);

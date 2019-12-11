@@ -8,8 +8,8 @@ import ProfileAside from '../Profile/ProfileAside';
 import './Layout.scss'
 
 
-class Layout extends React.Component{
-    state={
+class Layout extends React.Component {
+    state= {
         Products: []
     }
 
@@ -22,8 +22,8 @@ class Layout extends React.Component{
        this.getProducts();
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <React.Fragment>
                 <header>
                     <AppNavbar></AppNavbar>
@@ -33,7 +33,7 @@ class Layout extends React.Component{
                 </header>
                 <section>
                     <aside>
-                            <ProfileAside />
+                        <ProfileAside />
                     </aside>
                     <main>
                         <LandingPage Products={this.state.Products}></LandingPage>

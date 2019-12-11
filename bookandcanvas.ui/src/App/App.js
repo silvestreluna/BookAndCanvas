@@ -9,15 +9,14 @@ import EditUser from '../components/Profile/EditUser';
 function App() {
   return (
     <div>
-    <BrowserRouter>
-      <Switch>
-        <Route path='/' component = {Layout} exact />
-        <Route path='/addUser' component = {NewUser} exact />
-        <Route path='/editUser' component = {EditUser} exact />
-      </Switch>
-    </BrowserRouter>
-  <Layout />
-  </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Layout}/>
+          <Route path="/addUser" component={NewUser}/>
+          <Route path="/editUser" component={EditUser}/>
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 export default App;
