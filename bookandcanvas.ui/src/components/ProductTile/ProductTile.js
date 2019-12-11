@@ -28,9 +28,7 @@ class ProductTile extends React.Component {
       backgroundSize: 'cover',
     };
 
-    const EditButton = () => {
-      return <EditProductForm newProdObj={this.props.data}/>;
-    };
+    const EditButton = () => <EditProductForm newProdObj={this.props.data}/>;
 
     return (
       <React.Fragment>

@@ -16,7 +16,7 @@ import editIcon from '../../assets/images/edit-icon.svg';
 import './EditProductForm.scss';
 
 const newProdObj = {
-  ProductName: '',
+  productName: '',
   description: '',
   price: '',
   serviceType: '',
@@ -26,7 +26,7 @@ const newProdObj = {
 
 
 const blankNewProdFields = {
-  ProductName: '',
+  productName: '',
   description: '',
   price: '',
   serviceType: '',
@@ -41,6 +41,7 @@ class EditProductForm extends React.Component {
   }
 
   toggleModal = () => {
+    this.setState({newProdObj: this.props.newProdObj });
     this.setState({ showingModal: !this.state.showingModal });
   }
 
@@ -68,11 +69,12 @@ class EditProductForm extends React.Component {
     e.preventDefault();
     const prodObjToPostInDb = { ...this.state.newProdObj };
     prodObjToPostInDb.sellerId = 1;
+    console.error(prodObjToPostInDb);
     data.addNewProduct(prodObjToPostInDb)
       .then(() => {
         this.toggleModal();
         this.setState({ newProdObj: blankNewProdFields });
-        this.props.getProd();
+        // this.props.getProd();
       })
       .catch((err) => console.error(err));
   }
@@ -81,13 +83,13 @@ class EditProductForm extends React.Component {
     const modal = this.state.showingModal;
 
     const {
-      ProductName,
+      productName,
       description,
       price,
       serviceType,
       qty,
       imgUrl,
-    } = this.props.newProdObj;
+    } = this.state.newProdObj;
 
     return (
       <div className="AddProduct">
@@ -99,7 +101,7 @@ class EditProductForm extends React.Component {
               <div className="content">
                 <FormGroup>
                   <Label for="productTitle">Title</Label>
-                  <Input type="text" id="productTitle" name="ProductName" value={ProductName} onChange={this.handleChanges} required />
+                  <Input type="text" id="productTitle" name="ProductName" value={productName} onChange={this.handleChanges} required />
                 </FormGroup>
                 <FormGroup>
                   <Label for="productDescription">Description</Label>
