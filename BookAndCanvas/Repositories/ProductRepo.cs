@@ -35,12 +35,20 @@ namespace BookAndCanvas.Repositories
             }
         }
 
-        public bool DeleleteProdById(int productId)
+        public bool DeleteProdById(int productId)
         {
             using (var db = new SqlConnection(_connectionString))
             {
                 var sql = @"DELETE FROM PRODUCT WHERE Id = @productId";
                 return db.Execute(sql, new { productId}) == 1;
+            }
+        }
+
+        public void UpdateProductById(int id)
+        {
+            using(var db = new SqlConnection(_connectionString))
+            {
+
             }
         }
     }
