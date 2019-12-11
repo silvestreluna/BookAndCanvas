@@ -1,14 +1,24 @@
 import React from 'react';
+import EditProductForm from '../EditProductForm/EditProductForm';
 import deleteIcon from '../../assets/images/delete-icon.svg';
 import editIcon from '../../assets/images/edit-icon.svg';
 
 import './ProductTile.scss';
 
 class ProductTile extends React.Component {
+  state = {
+    isEditing: false,
+  }
+
   deleteProduct = () => {
     const prodId = this.props.data.id;
     this.props.deleteProdById(prodId);
   }
+
+  //  editProduct = () => {
+  //    console.error('clicked', !this.state.isEditing);
+  //    this.setState({ isEditing: !this.state.isEditing });
+  //  };
 
   render() {
     const productTileStyle = {
@@ -17,12 +27,17 @@ class ProductTile extends React.Component {
       backgroundPosition: 'center',
       backgroundSize: 'cover',
     };
+
+    const EditButton = () => {
+      return <EditProductForm newProdObj={this.props.data}/>;
+    };
+
     return (
       <React.Fragment>
         <div style={productTileStyle} className="productTile">
           <div className="btn-wrapper">
             <div>
-              <img src={editIcon} alt="edit-icon" className="edit-btn" />
+              {EditButton()}
             </div>
             <div>
               <img src={deleteIcon} alt="delete-icon" className="delete-btn" onClick={this.deleteProduct} />
