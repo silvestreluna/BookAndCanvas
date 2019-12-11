@@ -1,7 +1,6 @@
 import React from 'react';
 import EditProductForm from '../EditProductForm/EditProductForm';
 import deleteIcon from '../../assets/images/delete-icon.svg';
-import editIcon from '../../assets/images/edit-icon.svg';
 
 import './ProductTile.scss';
 

@@ -7,7 +7,7 @@ import {
   Label,
   Input,
 } from 'reactstrap';
-import data from '../../helpers/data/addProductCalls';
+import data from '../../helpers/data/productRequests';
 import Category from '../Category/Category';
 import AddImage from '../AddImage/AddImage';
 import editIcon from '../../assets/images/edit-icon.svg';
@@ -15,33 +15,15 @@ import editIcon from '../../assets/images/edit-icon.svg';
 
 import './EditProductForm.scss';
 
-const newProdObj = {
-  productName: '',
-  description: '',
-  price: '',
-  serviceType: '',
-  imgUrl: '',
-  qty: '',
-};
-
-
-const blankNewProdFields = {
-  productName: '',
-  description: '',
-  price: '',
-  serviceType: '',
-  imgUrl: '',
-  qty: '',
-};
 
 class EditProductForm extends React.Component {
   state = {
     showingModal: false,
-    newProdObj,
+    newProdObj: {},
   }
 
   toggleModal = () => {
-    this.setState({newProdObj: this.props.newProdObj });
+    this.setState({ newProdObj: this.props.newProdObj });
     this.setState({ showingModal: !this.state.showingModal });
   }
 
@@ -68,12 +50,11 @@ class EditProductForm extends React.Component {
   addProductToDb = (e) => {
     e.preventDefault();
     const prodObjToPostInDb = { ...this.state.newProdObj };
+    const productId = this.props.newProdObj.id;
     prodObjToPostInDb.sellerId = 1;
-    console.error(prodObjToPostInDb);
-    data.addNewProduct(prodObjToPostInDb)
+    data.editProduct(prodObjToPostInDb, productId)
       .then(() => {
         this.toggleModal();
-        this.setState({ newProdObj: blankNewProdFields });
         // this.props.getProd();
       })
       .catch((err) => console.error(err));
@@ -101,7 +82,7 @@ class EditProductForm extends React.Component {
               <div className="content">
                 <FormGroup>
                   <Label for="productTitle">Title</Label>
-                  <Input type="text" id="productTitle" name="ProductName" value={productName} onChange={this.handleChanges} required />
+                  <Input type="text" id="productTitle" name="productName" value={productName} onChange={this.handleChanges} required />
                 </FormGroup>
                 <FormGroup>
                   <Label for="productDescription">Description</Label>
@@ -134,7 +115,7 @@ class EditProductForm extends React.Component {
                   }
                 </FormGroup>
                 <div className="add-cancel-btns">
-                  <button type="submit">Add</button>
+                  <button type="submit">Update</button>
                   <button onClick={this.toggleModal}>Cancel</button>
                 </div>
               </div>
