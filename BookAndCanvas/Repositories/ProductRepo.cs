@@ -44,11 +44,23 @@ namespace BookAndCanvas.Repositories
             }
         }
 
-        public void UpdateProductById(int id)
+        public bool UpdateProductById(Product updatedProduct, int id)
         {
             using(var db = new SqlConnection(_connectionString))
             {
+                var sql = @"UPDATE [dbo].[Product]
+                            SET [ServiceType] = @serviceType,
+                            [Description] = @description,
+                            [SellerId] = @sellerId,
+                            [ProductName] = @productName,
+                            [Price] = @price,
+                            [ImgUrl] = @imgUrl,
+                            [Qty] = @qty
+                            WHERE [Id] = @id";
+                updatedProduct.Id = id;
 
+
+                return db.Execute(sql, updatedProduct)== 1;
             }
         }
     }

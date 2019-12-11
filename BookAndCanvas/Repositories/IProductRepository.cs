@@ -13,7 +13,7 @@ namespace BookAndCanvas.Repositories
             IEnumerable<Product> GetAllProducts();
 
          bool DeleteProdById(int productId);
-
+        bool UpdateProductById(Product updatedProduct, int id);
     }
 }
 

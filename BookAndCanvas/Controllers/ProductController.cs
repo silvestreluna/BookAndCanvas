@@ -41,5 +41,11 @@ namespace BookAndCanvas.Controllers
         {
             _repo.DeleteProdById(prodId);
         }
+
+        [HttpPut("{id}")]
+        public void UpdateProduct(Product updatedProduct, int id)
+        {
+             _repo.UpdateProductById(updatedProduct, id);
+        } 
     }
 }
