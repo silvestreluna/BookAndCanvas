@@ -35,7 +35,6 @@ namespace BookAndCanvas.Repositories
                 return products.ToList();
             }
         }
-
         public ActionResult<Product> GetProductById(int id)
         {
             using (var db = new SqlConnection(_connectionString))
@@ -44,8 +43,13 @@ namespace BookAndCanvas.Repositories
                             from Product
                             where Product.Id = @ProductId";
 
-                var Product = db.QueryFirst<Product>(sql, new { ProductId = id });
-                return Product;
+                    var product = db.QueryFirst<Product>(sql, new { ProductId = id });
+                    
+                    var productImages = new ImagesRepo();
+                    var allProductImages = productImages.GetImages(product.Id);
+                    var listOfProductImageUrls = allProductImages.Select(x => x.ImageUrl);
+                    product.imgList = listOfProductImageUrls.ToList();
+                return product;
             }
         }
 

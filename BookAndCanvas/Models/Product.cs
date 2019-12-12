@@ -16,5 +16,6 @@ namespace BookAndCanvas.Models
         public string ImgUrl { get; set; }
         public DateTime DateAdded { get; set; }
         public int Qty { get; set; }
+        public List<string> imgList{ get; set; }
     }
 }

@@ -1,0 +1,32 @@
+.wrapper{
+    display:flex;
+}
+article{
+    padding:40px;
+    height:100vh;
+}
+article.left{
+    width:55%;
+    // background-color:blue;
+    img.slideshow{
+        width:600px;
+        height:400px;
+    }
+}
+article.right{
+    width:45%;
+    // background-color:red !important;
+    span{
+        font-size:2em;
+        font-weight:400;
+    }
+    header{
+        display:flex;
+        position: relative;
+        justify-content: space-between;
+
+    }
+    .productTitle{
+        text-transform: uppercase;
+    }
+}

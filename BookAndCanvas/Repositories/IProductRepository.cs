@@ -14,6 +14,6 @@ namespace BookAndCanvas.Repositories
             IEnumerable<Product> GetAllProducts();
             ActionResult<Product> GetProductById(int id);
             bool DeleleteProdById(int productId);
-        }
+    }
 }
 
