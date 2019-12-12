@@ -7,7 +7,8 @@ import NewUser from '../components/Profile/NewUser'
  
  function App() {
    return (
-    <NewUser />
+    // <NewUser />
+    <Layout />
    );
  }
 
