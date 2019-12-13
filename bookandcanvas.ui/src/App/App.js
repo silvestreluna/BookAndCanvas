@@ -6,6 +6,7 @@ import './App.scss';
 import NewUser from '../components/Profile/NewUser';
 import EditUser from '../components/Profile/EditUser';
 
+
 function App() {
   return (
     <div>
@@ -19,4 +20,5 @@ function App() {
     </div>
   );
 }
-export default App;
+
+
