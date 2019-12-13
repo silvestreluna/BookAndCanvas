@@ -48,6 +48,7 @@ class Layout extends React.Component {
                         <LandingPage
                         Products={this.state.Products}
                         deleteProdById={this.deleteProdById}
+                        getProd={this.getProducts}
                         ></LandingPage>
                     </main>
                 </section>
