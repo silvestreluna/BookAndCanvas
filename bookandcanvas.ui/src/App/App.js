@@ -8,8 +8,8 @@ import ProductDetail from '../components/ProductDetail/ProductDetail';
 
 function App() {
   return (
-    // <Layout />
-    <ProductDetail className="ProductDetailComponent"/>
+    <Layout />
+    // <ProductDetail className="ProductDetailComponent"/>
   );
 }
 
