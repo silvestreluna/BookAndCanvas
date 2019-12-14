@@ -10,4 +10,6 @@ const getAllProducts = () => new Promise((resolve, reject) => {
 
 const deleteProd = (productId) => axios.delete(`${baseUrl}/product/${productId}`);
 
-export default { getAllProducts, deleteProd };
+const editProduct = (UpdatedProd, id) => axios.put(`${baseUrl}/product/${id}`, UpdatedProd);
+
+export default { getAllProducts, deleteProd, editProduct };

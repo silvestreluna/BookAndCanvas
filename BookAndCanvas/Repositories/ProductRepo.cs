@@ -1,11 +1,10 @@
-﻿using BookAndCanvas.DTOs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
-using Dapper;
+using BookAndCanvas.DTOs;
 using BookAndCanvas.Models;
+using Dapper;
 
 namespace BookAndCanvas.Repositories
 {
@@ -28,7 +27,7 @@ namespace BookAndCanvas.Repositories
 
         public IEnumerable<Product> GetAllProducts()
         {
-            
+
             using (var db = new SqlConnection(_connectionString))
             {
                 var products = db.Query<Product>(@"Select * from Product");
@@ -36,12 +35,32 @@ namespace BookAndCanvas.Repositories
             }
         }
 
-        public bool DeleleteProdById(int productId)
+        public bool DeleteProdById(int productId)
         {
             using (var db = new SqlConnection(_connectionString))
             {
                 var sql = @"DELETE FROM PRODUCT WHERE Id = @productId";
                 return db.Execute(sql, new { productId}) == 1;
+            }
+        }
+
+        public bool UpdateProductById(Product updatedProduct, int id)
+        {
+            using(var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"UPDATE [dbo].[Product]
+                            SET [ServiceType] = @serviceType,
+                            [Description] = @description,
+                            [SellerId] = @sellerId,
+                            [ProductName] = @productName,
+                            [Price] = @price,
+                            [ImgUrl] = @imgUrl,
+                            [Qty] = @qty
+                            WHERE [Id] = @id";
+                updatedProduct.Id = id;
+
+
+                return db.Execute(sql, updatedProduct)== 1;
             }
         }
     }

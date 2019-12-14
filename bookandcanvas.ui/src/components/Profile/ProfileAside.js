@@ -9,7 +9,7 @@ export default class ProfileAside extends React.Component {
   }
 
   componentDidMount() {
-    axios.get(`https://localhost:44350/api/users/1`)
+    axios.get('https://localhost:44350/api/users/1')
       .then(res => {
         const user = res.data;
         this.setState({ user: { ...user } });

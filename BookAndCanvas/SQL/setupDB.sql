@@ -9,7 +9,7 @@ create table Users
 	[LName] nvarchar(50) not null,
 	[Phone] nvarchar(50) not null,
 	[Email] nvarchar(50) not null,
-	[ImgUrl] nvarchar(50),
+	[ImgUrl] nvarchar(MAX),
 	[Bio] nvarchar (max)
 )
 

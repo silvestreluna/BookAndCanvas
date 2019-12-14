@@ -93,5 +93,18 @@ namespace BookAndCanvas.Repositories
                 return db.Execute(sql, new { id }) == 1;
             }
         }
+
+        public Users GetUserByEmail(string email)
+        {
+            using (var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"select *
+                            from Users
+                            where Users.Email = @userEmail";
+
+                var user = db.QueryFirst<Users>(sql, new { userEmail = email });
+                return user;
+            }
+        }
     }
 }
