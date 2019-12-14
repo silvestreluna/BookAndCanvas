@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Modal,
   Form,
   FormGroup,
   Label,
@@ -82,7 +83,9 @@ const editUserObj = {
     return (
       <div className="EditUser">
             <Form onSubmit={this.editUserToDb} >
+            <Modal>
               <div className="content">
+              
                 <FormGroup>
                   <Label for="fName">First Name</Label>
                   <Input type="text" id="fName" name="fName" value={fName} onChange={this.handleChanges} required />
@@ -114,8 +117,10 @@ const editUserObj = {
                   <Link to='/' className="btn btn-primary">Profile</Link>
                 </div>
               </FormGroup>
+              </Modal>
             </Form>
       </div>
+      
     );
   }
 }
