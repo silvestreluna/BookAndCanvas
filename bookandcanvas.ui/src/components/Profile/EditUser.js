@@ -110,8 +110,9 @@ const blankEditUserFields = {
               </FormGroup>
               </div>
               <FormGroup>
-                <div className="add--btn">
-                  <Link to="/" button type="submit" onClick={this.addUserToDb}>Update</Link>
+                <div className="add-btn">
+                  <button type="submit" onClick={this.addUserToDb}>Update</button>
+                  <Link to='/' className="btn btn-primary">Profile</Link>
                 </div>
               </FormGroup>
             </Form>

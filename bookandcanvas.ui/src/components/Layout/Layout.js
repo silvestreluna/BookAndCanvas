@@ -3,6 +3,7 @@ import AddProduct from '../AddProduct/AddProduct';
 import getAllProducts from '../../helpers/data/productRequests'
 import LandingPage from '../LandingPage/LandingPage';
 import AppNavbar from '../AppNavbar/AppNavbar';
+import Auth from '../Auth/Auth';
 
 import ProfileAside from '../Profile/ProfileAside';
 import './Layout.scss'
@@ -26,7 +27,6 @@ class Layout extends React.Component {
         return (
             <React.Fragment>
                 <header>
-                    <AppNavbar></AppNavbar>
                     <div className="secondarymenu">
                         <AddProduct getProd={this.getProducts} />
                     </div>
