@@ -38,7 +38,7 @@ class AppNavbar extends React.Component {
                       <NavLink tag={RRNavLink} to='/edituser'>Edit User</NavLink>
                     </NavItem>
                       <NavItem>
-                        <NavLink tag={RRNavLink} to='/adduser'>Add User</NavLink>
+                        <NavLink tag={RRNavLink} to='/addUser'>Add User</NavLink>
                       </NavItem>
                       <NavItem>
                         <NavLink onClick={this.logMeOut}>Logout</NavLink>

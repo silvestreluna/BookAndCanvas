@@ -3,8 +3,6 @@ import React from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
 import './ProfileAside.scss';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import editUser from './EditUser'
 
 import userShape from '../../helpers/Propz/UserShape';
 
@@ -29,7 +27,7 @@ class ProfileAside extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('https://localhost:44350/api/users/1')
+    axios.get('https://localhost:44350/api/users/1004')
       .then(res => {
         const user = res.data;
         this.setState({ user: { ...user } });
@@ -37,7 +35,7 @@ class ProfileAside extends React.Component {
   }
 
   render() {
-    const { user } = this.state;
+    // const { user } = this.state;
 
     if (this.state.moveToEdit) {
       return <Redirect to="/editUser"/>;
@@ -46,7 +44,7 @@ class ProfileAside extends React.Component {
     return (
       // Return user info
       <div className="userinfo">
-        <img className="useravatar" src={this.state.user.imgUrl}/>
+        <img className="useravatar" src={this.state.user.imgUrl} alt="UserAvatar"/>
         <h3 className="userfname">{this.state.user.fName}</h3>
         <h3 className="userlname">{this.state.user.lName}</h3>
         <h6 className="useremail">{this.state.user.email}</h6>

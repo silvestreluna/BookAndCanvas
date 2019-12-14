@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Modal,
   Form,
   FormGroup,
   Label,
@@ -21,14 +20,14 @@ const editUserObj = {
 };
 
 
-const blankEditUserFields = {
-  fName: '',
-  lName: '',
-  email: '',
-  phone: '',
-  imgUrl: '',
-  bio: '',
-};
+// const blankEditUserFields = {
+//   fName: '',
+//   lName: '',
+//   email: '',
+//   phone: '',
+//   imgUrl: '',
+//   bio: '',
+// };
 
  class EditUser extends React.Component {
   state = {

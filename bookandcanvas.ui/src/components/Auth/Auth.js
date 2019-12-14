@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase/app';
+import { Link, withRouter } from 'react-router-dom';
 import 'firebase/auth';
 
 import './Auth.scss';
@@ -14,11 +15,11 @@ class Auth extends React.Component {
   render() {
     return (
       <div className="Auth">
-        <h1>Auth</h1>
         <button className="btn btn-secondary" onClick={this.loginClickEvent}>Login with Google</button>
+        <Link to='/addUser' className="btn btn-primary">Sign Up!</Link>
       </div>
     );
   }
 }
 
-export default Auth;
+export default withRouter(Auth);
