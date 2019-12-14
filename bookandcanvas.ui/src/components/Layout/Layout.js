@@ -1,9 +1,9 @@
 import React from 'react';
 import AddProduct from '../AddProduct/AddProduct';
-import getAllProducts from '../../helpers/data/productRequests'
+import productRequest from '../../helpers/data/productRequests';
 import LandingPage from '../LandingPage/LandingPage';
 import ProfileAside from '../Profile/ProfileAside';
-import './Layout.scss'
+import './Layout.scss';
 
 
 class Layout extends React.Component {
@@ -12,16 +12,26 @@ class Layout extends React.Component {
     }
 
     getProducts = () => {
-        getAllProducts().then(data => {
-            this.setState({Products:data})
-        })
+      productRequest.getAllProducts().then((data) => {
+        this.setState({ Products: data });
+      });
     }
+
+    deleteProdById = (prodId) => {
+      productRequest.deleteProd(prodId)
+        .then(() => {
+          this.getProducts();
+        })
+        .catch((error) => console.error(error));
+    }
+
     componentDidMount() {
-       this.getProducts();
+      this.getProducts();
     }
 
     render() {
         return (
+
             <React.Fragment>
                 <header>
                     <div className="secondarymenu">
@@ -33,11 +43,15 @@ class Layout extends React.Component {
                         <ProfileAside />
                     </aside>
                     <main>
-                        <LandingPage Products={this.state.Products}></LandingPage>
+                        <LandingPage
+                        Products={this.state.Products}
+                        deleteProdById={this.deleteProdById}
+                        getProd={this.getProducts}
+                        ></LandingPage>
                     </main>
                 </section>
             </React.Fragment>
-        );
+      );
     }
 }
 

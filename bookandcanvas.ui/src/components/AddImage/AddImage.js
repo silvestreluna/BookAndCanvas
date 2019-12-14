@@ -28,6 +28,7 @@ class AddImage extends React.Component {
       .then((resp) => {
         const imgUrl = resp.data.data.display_url;
         this.props.setProdImgUrl(imgUrl);
+        this.setState({ tempLocalImgDisplay: '' });
       })
       .catch((error) => console.error(error));
   }
