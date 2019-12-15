@@ -7,13 +7,8 @@ import './Layout.scss';
 
 
 class Layout extends React.Component {
-<<<<<<< HEAD
     state= {
         Products: []
-=======
-    state={
-      Products: [],
->>>>>>> master
     }
 
     getProducts = () => {
@@ -35,11 +30,7 @@ class Layout extends React.Component {
     }
 
     render() {
-<<<<<<< HEAD
         return (
-=======
-      return (
->>>>>>> master
             <React.Fragment>
                 <header>
                     <div className="secondarymenu">

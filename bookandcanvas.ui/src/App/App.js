@@ -1,5 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
 // import LandingPage from '../components/LandingPage/LandingPage';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import firebase from 'firebase/app';
@@ -65,20 +64,3 @@ class App extends React.Component {
   }
 }
 export default App;
-=======
- // import LandingPage from '../components/LandingPage/LandingPage';
- import Layout from '../components/Layout/Layout';
- import './App.scss';
-import NewUser from '../components/Profile/NewUser'
-
- 
- function App() {
-   return (
-    // <NewUser />
-    <Layout />
-   );
- }
-
- export default App;
- 
->>>>>>> master
