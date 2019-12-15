@@ -10,24 +10,25 @@ export default class ProfileAside extends React.Component {
 
   componentDidMount() {
     axios.get('https://localhost:44350/api/users/1')
-      .then(res => {
+      .then((res) => {
         const user = res.data;
         this.setState({ user: { ...user } });
-      })
+      });
   }
 
   render() {
-
     return (
       // Return user info
-      <div className="userinfo">
-        <img className="useravatar" src={this.state.user.imgUrl}/>
-        <h3 className="userfname">{this.state.user.fName}</h3>
-        <h3 className="userlname">{this.state.user.lName}</h3>
-        <h6 className="useremail">{this.state.user.email}</h6>
-        <h6 className="userphone">{this.state.user.phone}</h6>
-        <p className="userbio">{this.state.user.bio}</p>
-      </div>
-    )
+      <aside>
+        <div className="userinfo">
+          <img className="useravatar" src={this.state.user.imgUrl} alt="avatar" />
+          <h3 className="userfname">{this.state.user.fName}</h3>
+          <h3 className="userlname">{this.state.user.lName}</h3>
+          <h6 className="useremail">{this.state.user.email}</h6>
+          <h6 className="userphone">{this.state.user.phone}</h6>
+          <p className="userbio">{this.state.user.bio}</p>
+        </div>
+      </aside>
+    );
   }
 }

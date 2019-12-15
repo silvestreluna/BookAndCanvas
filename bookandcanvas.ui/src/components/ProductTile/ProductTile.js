@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 import EditProductForm from '../EditProductForm/EditProductForm';
 import deleteIcon from '../../assets/images/delete-icon.svg';
 
@@ -25,28 +27,28 @@ class ProductTile extends React.Component {
     const EditButton = () => <EditProductForm newProdObj={this.props.data} getProd={this.props.getProd} />;
 
     return (
-      <React.Fragment>
-        <div style={productTileStyle} className="productTile">
-          <div className="btn-wrapper">
-            <div>
-              {EditButton()}
-            </div>
-            <div>
-              <img src={deleteIcon} alt="delete-icon" className="delete-btn" onClick={this.deleteProduct} />
-            </div>
+        <React.Fragment>
+          <div style={productTileStyle} className="productTile" onClick={this.props.clicked}>
+            <div className="btn-wrapper">
+              <div>
+                {EditButton()}
+              </div>
+              <div>
+                <img src={deleteIcon} alt="delete-icon" className="delete-btn" onClick={this.deleteProduct} />
+              </div>
 
-          </div>
-          <div className="info-wrapper">
-            <div className="wrapper">
-              <h4>{this.props.data.productName}</h4>
-              <h4 className="price">{this.props.data.price}</h4>
             </div>
-            <div className="wrapper">
-              <h6>{this.props.data.description}</h6>
+            <div className="info-wrapper">
+              <div className="wrapper">
+                <h4>{this.props.data.productName}</h4>
+                <h4 className="price">{this.props.data.price}</h4>
+              </div>
+              <div className="wrapper">
+                <h6>{this.props.data.description}</h6>
+              </div>
             </div>
           </div>
-        </div>
-      </React.Fragment>
+        </React.Fragment>
     );
   }
 }
