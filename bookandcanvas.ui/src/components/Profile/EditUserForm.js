@@ -9,7 +9,7 @@ import {
   Input,
 } from 'reactstrap';
 
-import { Link, Redirect, withRouter } from 'react-router-dom';
+import {withRouter } from 'react-router-dom';
 import data from '../../helpers/data/addUser';
 import useGlobalState from '../../GlobalState';
 import './EditUser.scss';

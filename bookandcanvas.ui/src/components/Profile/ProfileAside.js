@@ -44,15 +44,15 @@ const ProfileAside = () => {
   return (
     // Return user info
     <div className="userinfo">
-    <div>
-    {EditButton()}
-  </div>
       <img className="useravatar" src={user.imgUrl} alt="UserAvatar"/>
       <h3 className="userfname">{user.fName}</h3>
       <h3 className="userlname">{user.lName}</h3>
       <h6 className="useremail">{user.email}</h6>
       <h6 className="userphone">{user.phone}</h6>
       <p className="userbio">{user.bio}</p>
+    <div>
+      <p>{EditButton()}</p>
+    </div>
     </div>);
 };
 
