@@ -11,7 +11,7 @@ import data from '../../helpers/data/productRequests';
 import Category from '../Category/Category';
 import AddImage from '../AddImage/AddImage';
 import editIcon from '../../assets/images/edit-icon.svg';
-
+import imgBB from '../../helpers/data/postImg';
 
 import './EditProductForm.scss';
 
@@ -20,6 +20,7 @@ class EditProductForm extends React.Component {
   state = {
     showingModal: false,
     newProdObj: {},
+    rawImgfile: '',
   }
 
   toggleModal = () => {
@@ -41,17 +42,29 @@ class EditProductForm extends React.Component {
     this.setState({ newProdObj: tempProdObj });
   }
 
-  setProdImgUrl = (imgUrl) => {
-    const tempProdObj = { ...this.state.newProdObj };
-    tempProdObj.imgUrl = imgUrl;
-    this.setState({ newProdObj: tempProdObj });
+  updateStateWithRawImgFiles = (imgFile) => {
+    const rawImgfile = imgFile[0];
+    this.setState({ rawImgfile });
   }
 
-  addProductToDb = (e) => {
+  uploadImgToImbb = (e) => {
     e.preventDefault();
+    const { rawImgfile } = this.state;
+    const dataForm = new FormData();
+    dataForm.append('image', rawImgfile);
+    imgBB.addImgToImgBB(dataForm)
+      .then((resp) => {
+        const imgUrl = resp.data.data.display_url;
+        this.addProductToDb(imgUrl);
+      })
+      .catch((error) => console.error(error));
+  }
+
+  addProductToDb = (imgUrl) => {
     const prodObjToPostInDb = { ...this.state.newProdObj };
     const productId = this.props.newProdObj.id;
     prodObjToPostInDb.sellerId = 1;
+    prodObjToPostInDb.imgUrl = imgUrl;
     data.editProduct(prodObjToPostInDb, productId)
       .then(() => {
         this.toggleModal();
@@ -78,7 +91,7 @@ class EditProductForm extends React.Component {
 
         <Modal isOpen={modal} centered={true} >
           <ModalBody>
-            <Form onSubmit={this.addProductToDb} >
+            <Form onSubmit={this.uploadImgToImbb} >
               <div className="content">
                 <FormGroup>
                   <Label for="productTitle">Title</Label>
@@ -105,7 +118,7 @@ class EditProductForm extends React.Component {
                 </div>
                 <FormGroup>
                   <img src={imgUrl} alt="product img" />
-                  <AddImage setProdImgUrl={this.setProdImgUrl} />
+                  <AddImage updateStateWithRawImgFiles={this.updateStateWithRawImgFiles} />
                 </FormGroup>
                 <div className="add-btn-wrapper">
                   <button id="submit-btm" type="submit">Update</button>
