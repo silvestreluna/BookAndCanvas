@@ -25,7 +25,7 @@ const ProfileAside = () => {
   };
 
   React.useEffect(() => {
-    axios.get('https://localhost:44350/api/users/1004')
+    axios.get('https://localhost:44350/api/users/1')
       .then(res => {
         const user = res.data;
         globalActions.setUser(user);

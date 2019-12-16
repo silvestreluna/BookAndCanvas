@@ -112,7 +112,11 @@ class EditProductForm extends React.Component {
                 </div>
               </div>
             </Form>
+<<<<<<< HEAD
             <div className="cancel-btn-wrapper">
+=======
+            <div className = "cancel-btn-wrapper">
+>>>>>>> 3371911498fcda3164efcf9529f557264901a145
               <button className="cancel-btn" onClick={this.toggleModal}>Cancel</button>
             </div>
           </ModalBody>
