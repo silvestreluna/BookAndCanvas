@@ -8,7 +8,9 @@ import {
   Input,
 } from 'reactstrap';
 import data from '../../helpers/data/addProductCalls';
-import test from '../../helpers/data/postImg';
+import updateProd from '../../helpers/data/productRequests';
+import postImg from '../../helpers/data/imageRequest';
+import imgBB from '../../helpers/data/postImg';
 import Category from '../Category/Category';
 import AddImage from '../AddImage/AddImage';
 
@@ -37,8 +39,9 @@ class AddProduct extends React.Component {
   state = {
     showingModal: false,
     newProdObj,
-    imgBlobs: [],
+    imgFilesRaw: [],
     imgbbURLs: [],
+    // prodId: '',
   }
 
   toggleModal = () => {
@@ -59,42 +62,63 @@ class AddProduct extends React.Component {
     this.setState({ newProdObj: tempProdObj });
   }
 
-  setProdImgUrl = (imgUrl) => {
-    // const tempProdObj = { ...this.state.newProdObj };
-    // tempProdObj.imgUrl = imgUrl;
-    // this.setState({ newProdObj: tempProdObj });
-    this.setState({ imgBlobs: imgUrl });
-
-    // console.error(imgUrl);
+  updateStateWithRawImgFiles = (imgFiles) => {
+    this.setState({ imgFilesRaw: imgFiles });
   }
 
-  uploadImgToImgbb = () => {
-    const { imgBlobs } = this.state;
-    for (let i = 0; i < imgBlobs.length; i += 1) {
+  uploadImgToImgbb = (prodId) => {
+    const { imgFilesRaw } = this.state;
+    const imgUrls = [];
+    const promises = [];
+    for (let i = 0; i < imgFilesRaw.length; i += 1) {
       const dataForm = new FormData();
-      dataForm.append('image', imgBlobs[i]);
-      test.addImgToImgBB(dataForm)
-        .then((resp) => {
-          const imgUrl = resp.data.data.display_url;
-          console.error(imgUrl);
-          // this.setState({ tempLocalImgToDisplay: [] });
-          // this.props.setProdImgUrl(imgUrl);
-        })
-        .catch((error) => console.error(error));
+      dataForm.append('image', imgFilesRaw[i]);
+      promises.push(imgBB.addImgToImgBB(dataForm));
     }
+    Promise.all(promises)
+      .then((resp) => {
+        resp.forEach((url) => {
+          const imgUrl = url.data.data.display_url;
+          imgUrls.push(imgUrl);
+        });
+      }).then(() => {
+        this.setState({ imgbbURLs: imgUrls });
+        const updateProductObj = { ...this.state.newProdObj };
+        const firstImgForProdTile = this.state.imgbbURLs[0];
+        updateProductObj.imgUrl = firstImgForProdTile;
+        updateProductObj.sellerId = 1;
+        updateProd.editProduct(updateProductObj, prodId)
+          .then(() => {
+            this.toggleModal();
+            this.setState({ newProdObj: blankNewProdFields });
+            this.props.getProd();
+          });
+        this.addImgUrlsToDb(prodId);
+      })
+      .catch((error) => console.error(error));
+  }
+
+  addImgUrlsToDb = (productId) => {
+    const imgUrlArray = this.state.imgbbURLs;
+    const tempImgObj = {
+      UserId: 1,
+      ProductId: productId,
+    };
+
+    imgUrlArray.forEach((img) => {
+      tempImgObj.imageUrl = img;
+      postImg.postImgToDb(tempImgObj)
+        .catch((error) => console.error(error));
+    });
   }
 
   addProductToDb = (e) => {
     e.preventDefault();
-    this.uploadImgToImgbb();
     const prodObjToPostInDb = { ...this.state.newProdObj };
     prodObjToPostInDb.sellerId = 1;
     data.addNewProduct(prodObjToPostInDb)
       .then((resp) => {
-        console.error(resp.data);
-        this.toggleModal();
-        this.setState({ newProdObj: blankNewProdFields });
-        this.props.getProd();
+        this.uploadImgToImgbb(resp.data.id);
       })
       .catch((err) => console.error(err));
   }
@@ -148,7 +172,7 @@ class AddProduct extends React.Component {
                         <img src={imgUrl} alt="product img" />
                       )
                       : (
-                        <AddImage setProdImgUrl={this.setProdImgUrl} />
+                        <AddImage updateStateWithRawImgFiles={this.updateStateWithRawImgFiles} />
                       )
                   }
                 </FormGroup>

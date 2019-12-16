@@ -213,6 +213,7 @@ alter table Images
 	add constraint FK_Images_ProductId
 					foreign key(ProductId)
 					references Product(Id)
+					ON DELETE CASCADE
 
 alter table Images 
 	add constraint FK_Images_userId

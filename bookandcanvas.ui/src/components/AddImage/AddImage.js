@@ -18,7 +18,7 @@ class AddImage extends React.Component {
       imgFiles.push(allFiles[i]);
     }
     this.setState({ tempLocalImgToDisplay: tempImgs });
-    this.props.setProdImgUrl(imgFiles);
+    this.props.updateStateWithRawImgFiles(imgFiles);
   };
 
   render() {
@@ -26,9 +26,9 @@ class AddImage extends React.Component {
 
     const displayLabel = () => {
       if (tempLocalImgToDisplay.length > 0) {
-        return <Label for="img-url">Change your Image</Label>;
+        return <Label for="img-url">Change your Image(s)</Label>;
       }
-      return <Label for="img-url">Select an Image to upload</Label>;
+      return <Label for="img-url">Select Image(s) to upload</Label>;
     };
 
     const displayTempImgs = tempLocalImgToDisplay.map((imgUrl) => <img src={imgUrl} key={imgUrl} alt="product img"/>);
