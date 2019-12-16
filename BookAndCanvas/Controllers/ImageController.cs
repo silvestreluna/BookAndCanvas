@@ -13,12 +13,6 @@ namespace BookAndCanvas.Controllers
     [ApiController]
     public class ImageController : ControllerBase
     {
-        //[HttpPost]
-        //public void AddNewImg(NewImageDTO newImg)
-        //{
-        //    var repo = new ImagesRepo();
-        //    repo.AddImage(newImg);
-        //}
 
         [HttpPost]
         public IActionResult AddNewImg(NewImageDTO newImg)

@@ -26,20 +26,6 @@ namespace BookAndCanvas.Repositories
             }
         }
 
-        //public bool AddImage(NewImageDTO newImg)
-        //{
-        //    using(var db = new SqlConnection(_connectionString))
-        //    {
-        //        var sql = @"INSERT INTO [dbo].[Images]
-        //                                    ([userId],[productId],[imageUrl])
-        //                                    VALUES(@userId, @productId, @imageUrl)";
-
-        //        return db.Execute(sql, newImg) == 1;
-
-        //    }
-        //}
-
-
         public Images AddImage(NewImageDTO newImg)
         {
             using (var db = new SqlConnection(_connectionString))
