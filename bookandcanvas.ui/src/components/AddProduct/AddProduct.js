@@ -41,7 +41,7 @@ class AddProduct extends React.Component {
     newProdObj,
     imgFilesRaw: [],
     imgbbURLs: [],
-    // prodId: '',
+    isDisabled: false,
   }
 
   toggleModal = () => {
@@ -94,6 +94,7 @@ class AddProduct extends React.Component {
             this.props.getProd();
           });
         this.addImgUrlsToDb(prodId);
+        this.setState({ isDisabled: true });
       })
       .catch((error) => console.error(error));
   }
@@ -114,6 +115,7 @@ class AddProduct extends React.Component {
 
   addProductToDb = (e) => {
     e.preventDefault();
+    this.setState({ isDisabled: true });
     const prodObjToPostInDb = { ...this.state.newProdObj };
     prodObjToPostInDb.sellerId = 1;
     data.addNewProduct(prodObjToPostInDb)
@@ -134,6 +136,7 @@ class AddProduct extends React.Component {
       qty,
       imgUrl,
     } = this.state.newProdObj;
+    const { isDisabled } = this.state;
 
     return (
       <div className="AddProduct">
@@ -177,7 +180,7 @@ class AddProduct extends React.Component {
                   }
                 </FormGroup>
                 <div className="add-cancel-btns">
-                  <button type="submit">Add</button>
+                  <button type="submit" disabled={isDisabled}>Add</button>
                   <button onClick={this.toggleModal}>Cancel</button>
                 </div>
               </div>
