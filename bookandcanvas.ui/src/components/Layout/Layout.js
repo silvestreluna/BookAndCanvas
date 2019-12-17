@@ -48,22 +48,29 @@ class Layout extends React.Component {
            <BrowserRouter>
            <Switch>
               {/* <ProductDetail Products={this.state.products} className="ProductDetailComponent"/> */}
-              <Route path="/ProfilePage" exact render={(props) => <React.Fragment>
+              <Route path="/ProfilePage" exact render={(props) => (
+              <React.Fragment>
                   <ProfileAside />
                   <Products Products={this.state.Products}
                       deleteProdById={this.deleteProdById}
                       getProd={this.getProducts}
                       {...props} />
-                </React.Fragment>}
+              </React.Fragment>)}
               />
 
-              <Route path="/" exact render={() => <Products Products={this.state.Products}
+              <Route path="/" exact render={(props) => (
+              <Products Products={this.state.Products}
                     deleteProdById={this.deleteProdById}
-                    getProd={this.getProducts}/>}
+                    getProd={this.getProducts}
+                    {...props} />
+              )}
               />
-              <Route path="/Home" exact render={() => <Products Products={this.state.Products}
+              <Route path="/Home" exact render={(props) => (
+              <Products Products={this.state.Products}
                     deleteProdById={this.deleteProdById}
-                    getProd={this.getProducts}/>}
+                    getProd={this.getProducts}
+                    {...props} />
+              )}
               />
               <Route path="/product/:id" component={ProductDetail}/>
 

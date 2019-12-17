@@ -1,12 +1,25 @@
 import React from 'react';
+import {
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
+
 import getProductDetails from '../../helpers/data/getProductDetails';
+
 
 import './ProductDetail.scss';
 
 class ProductDetail extends React.Component {
     state = {
       ProductDetails: [],
+      dropdownOpen: false,
+      // setOpen: false,
     }
+
+    toggle = () => this.setState({ setOpen: !this.state.dropdownOpen });
+
 
     getProdDetail = (id) => {
       getProductDetails.getDetails(id).then((data) => {
@@ -34,12 +47,42 @@ class ProductDetail extends React.Component {
               <div>
                <span>{this.state.serviceType}</span>
               </div>
-              <section>
+              <div>
                 {this.state.ProductDetails.description}
-              </section>
-            <section>
-
-            </section>
+              </div>
+              <div>
+                <div className="labelInput-wrapper">
+                  <label>Qty</label>
+                  <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                    <DropdownToggle caret>
+                      Button Dropdown
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem header>Header</DropdownItem>
+                      <DropdownItem disabled>Action</DropdownItem>
+                      <DropdownItem>Another Action</DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem>Another Action</DropdownItem>
+                    </DropdownMenu>
+                  </ButtonDropdown>
+                </div>
+                <div className="labelInput-wrapper">
+                  <label>Shipping</label>
+                  <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+                    <DropdownToggle caret>
+                      Button Dropdown
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem header>Header</DropdownItem>
+                      <DropdownItem disabled>Action</DropdownItem>
+                      <DropdownItem>Another Action</DropdownItem>
+                      <DropdownItem divider />
+                      <DropdownItem>Another Action</DropdownItem>
+                    </DropdownMenu>
+                  </ButtonDropdown>
+                </div>
+                <button>Add to cart</button>
+              </div>
             </article>
           </main>
       );
