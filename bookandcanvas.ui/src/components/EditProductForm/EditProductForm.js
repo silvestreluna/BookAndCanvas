@@ -49,22 +49,29 @@ class EditProductForm extends React.Component {
 
   uploadImgToImbb = (e) => {
     e.preventDefault();
-    const { rawImgfile } = this.state;
-    const dataForm = new FormData();
-    dataForm.append('image', rawImgfile);
-    imgBB.addImgToImgBB(dataForm)
-      .then((resp) => {
-        const imgUrl = resp.data.data.display_url;
-        this.addProductToDb(imgUrl);
-      })
-      .catch((error) => console.error(error));
+
+    if (this.setState.rawImgfile === '') {
+      
+      // const { rawImgfile } = this.state;
+      // const dataForm = new FormData();
+      // dataForm.append('image', rawImgfile);
+      // imgBB.addImgToImgBB(dataForm)
+      //   .then((resp) => {
+      //     const imgUrl = resp.data.data.display_url;
+      //     this.addProductToDb(imgUrl);
+      //   })
+      //   .catch((error) => console.error(error));
+    }
   }
 
   addProductToDb = (imgUrl) => {
     const prodObjToPostInDb = { ...this.state.newProdObj };
     const productId = this.props.newProdObj.id;
     prodObjToPostInDb.sellerId = 1;
-    prodObjToPostInDb.imgUrl = imgUrl;
+    if (this.state.rawImgfile !== '') {
+      prodObjToPostInDb.imgUrl = imgUrl;
+    }
+
     data.editProduct(prodObjToPostInDb, productId)
       .then(() => {
         this.toggleModal();
