@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
 
 // import LandingPage from '../components/LandingPage/LandingPage';
 import Layout from '../components/Layout/Layout';
@@ -9,13 +8,7 @@ import './App.scss';
 
 
 function App() {
-  return (
-    <BrowserRouter>
-        <Layout />
-        {/* <ProductDetail className="ProductDetailComponent"/> */}
-
-    </BrowserRouter>
-  );
+  return <Layout />;
 }
 
 export default App;

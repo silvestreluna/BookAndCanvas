@@ -1,21 +1,28 @@
-.wrapper{
+main.wrapper{
     display:flex;
+    margin-top:45px;
+}
+.productInfo-wrapper{
+    display:flex;
+    justify-content: space-between;
 }
 article{
     padding:40px;
     height:100vh;
 }
 article.left{
-    width:55%;
-    // background-color:blue;
-    img.slideshow{
+    display:flex;
+    min-width:55%;
+    div.slideshow{
         width:600px;
-        height:400px;
+        height:375px;
+        background-size:cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 }
 article.right{
-    width:45%;
-    // background-color:red !important;
+    min-width:45%;
     span{
         font-size:2em;
         font-weight:400;

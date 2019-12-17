@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 
 import AddProduct from '../AddProduct/AddProduct';
 import productRequest from '../../helpers/data/productRequests';
@@ -35,10 +35,6 @@ class Layout extends React.Component {
   }
 
   render() {
-    // const landingPageStyle = {
-    //   minWidth: '100%',
-    // };
-
     console.log(this.state.Products);
     return (
       <React.Fragment>
@@ -49,25 +45,30 @@ class Layout extends React.Component {
           </div>
         </header>
         <section>
-        <Route path="/ProfilePage" exact render={() => <React.Fragment>
-            <ProfileAside />
-            <Products Products={this.state.Products}
-                deleteProdById={this.deleteProdById}
-                getProd={this.getProducts}/>
-          </React.Fragment>}
-        />
-        <Route path="/" exact render={() => <Products Products={this.state.Products}
-              deleteProdById={this.deleteProdById}
-              getProd={this.getProducts}/>}
-        />
-        <Route path="/Home" exact render={() => <Products Products={this.state.Products}
-              deleteProdById={this.deleteProdById}
-              getProd={this.getProducts}/>}
-        />
-        <Route path="Products/:id" exact render={() => <ProductDetail Products={this.state.Products}
-              deleteProdById={this.deleteProdById}
-              getProd={this.getProducts}/>}
-        />
+           <BrowserRouter>
+           <Switch>
+              {/* <ProductDetail Products={this.state.products} className="ProductDetailComponent"/> */}
+              <Route path="/ProfilePage" exact render={(props) => <React.Fragment>
+                  <ProfileAside />
+                  <Products Products={this.state.Products}
+                      deleteProdById={this.deleteProdById}
+                      getProd={this.getProducts}
+                      {...props} />
+                </React.Fragment>}
+              />
+
+              <Route path="/" exact render={() => <Products Products={this.state.Products}
+                    deleteProdById={this.deleteProdById}
+                    getProd={this.getProducts}/>}
+              />
+              <Route path="/Home" exact render={() => <Products Products={this.state.Products}
+                    deleteProdById={this.deleteProdById}
+                    getProd={this.getProducts}/>}
+              />
+              <Route path="/product/:id" component={ProductDetail}/>
+
+            </Switch>
+          </BrowserRouter>
         </section>
       </React.Fragment>
     );

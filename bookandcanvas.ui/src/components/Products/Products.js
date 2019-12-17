@@ -4,20 +4,19 @@ import ProductTile from '../ProductTile/ProductTile';
 import './Products.scss';
 
 class Products extends React.Component {
-  buildProductTile = () => this.props.Products.map((t) => (
-      <ProductTile data={t}
+  buildProductTile = () => this.props.Products.map((t) => {
+    const history = { ...this.props.history };
+
+    return (<ProductTile data={t}
       key={t.id}
       deleteProdById={this.props.deleteProdById}
       getProd={this.props.getProd}
-      clicked={() => this.productTileSelectedHandler(t.id)}
-      />
-  ));
+      historyProp={history}
+      // clicked={() => this.productTileSelectedHandler(t.id)}
+      />);
+  });
 
   componentDidMount() {
-  }
-
-  productTileSelectedHandler = (id) => {
-    this.props.history.push({ pathname: `ProductDetail/${id}` });
   }
 
   render() {

@@ -8,29 +8,32 @@ class ProductDetail extends React.Component {
       ProductDetails: [],
     }
 
-    getProdDetail = () => {
-      getProductDetails.getDetails(1004).then((data) => {
+    getProdDetail = (id) => {
+      getProductDetails.getDetails(id).then((data) => {
         this.setState({ ProductDetails: data });
       });
     };
 
     componentDidMount() {
-      this.getProdDetail();
+      this.getProdDetail(this.props.match.params.id);
     }
 
     render() {
-      console.log(this.state.ProductDetails);
       return (
           <main className="wrapper">
             <article className="left">
-              {/* <carosel details={this.state.ProductDetails}></carosel> */}
-              <img src={this.state.ProductDetails.imgUrl} alt="Product" className="slideshow"/>
+              <div className="slideshow" style={{ backgroundImage: 'url("' + this.state.ProductDetails.imgUrl + '")' }}>
+                {/* <carosel details={this.state.ProductDetails}></carosel> */}
+              </div>
             </article>
             <article className="right">
-              <header>
+              <div className="productInfo-wrapper">
                 <span className="productTitle">{this.state.ProductDetails.productName}</span>
                 <span className="productPrice">{this.state.ProductDetails.price}</span>
-              </header>
+              </div>
+              <div>
+               <span>{this.state.serviceType}</span>
+              </div>
               <section>
                 {this.state.ProductDetails.description}
               </section>
@@ -39,7 +42,6 @@ class ProductDetail extends React.Component {
             </section>
             </article>
           </main>
-
       );
     }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-
+// import { withRouter } from 'react-router-dom';
 import EditProductForm from '../EditProductForm/EditProductForm';
 import deleteIcon from '../../assets/images/delete-icon.svg';
 
@@ -16,6 +15,11 @@ class ProductTile extends React.Component {
     this.props.deleteProdById(prodId);
   }
 
+  productTileSelectedHandler = () => {
+    this.props.historyProp.push({ pathname: `product/${this.props.data.id}` });
+    // console.log('Hello');
+  }
+
   render() {
     const productTileStyle = {
       backgroundImage: `url(${this.props.data.imgUrl})`,
@@ -24,11 +28,13 @@ class ProductTile extends React.Component {
       backgroundSize: 'cover',
     };
 
-    const EditButton = () => <EditProductForm newProdObj={this.props.data} getProd={this.props.getProd} />;
+    const EditButton = () => (
+      <EditProductForm newProdObj={this.props.data} getProd={this.props.getProd} />
+    );
 
     return (
         <React.Fragment>
-          <div style={productTileStyle} className="productTile" onClick={this.props.clicked}>
+          <div style={productTileStyle} className="productTile" onClick={this.productTileSelectedHandler}>
             <div className="btn-wrapper">
               <div>
                 {EditButton()}
@@ -53,3 +59,4 @@ class ProductTile extends React.Component {
   }
 }
 export default ProductTile;
+// export default withRouter(ProductTile);
