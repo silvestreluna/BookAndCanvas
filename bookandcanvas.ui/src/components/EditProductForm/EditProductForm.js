@@ -21,6 +21,8 @@ class EditProductForm extends React.Component {
     showingModal: false,
     newProdObj: {},
     rawImgfile: '',
+    updatedUrl: '',
+    isDisabled: false,
   }
 
   toggleModal = () => {
@@ -47,35 +49,46 @@ class EditProductForm extends React.Component {
     this.setState({ rawImgfile });
   }
 
-  uploadImgToImbb = (e) => {
-    e.preventDefault();
+  uploadImgToImbb = () => {
+    this.setState({ isDisabled: true });
+    const { rawImgfile } = this.state;
+    const dataForm = new FormData();
+    dataForm.append('image', rawImgfile);
+    imgBB.addImgToImgBB(dataForm)
+      .then((resp) => {
+        const imgUrl = resp.data.data.display_url;
+        this.setState({ updatedUrl: imgUrl });
+        this.addProductToDb();
+      })
+      .catch((error) => console.error(error));
+  }
 
-    if (this.setState.rawImgfile === '') {
-      
-      // const { rawImgfile } = this.state;
-      // const dataForm = new FormData();
-      // dataForm.append('image', rawImgfile);
-      // imgBB.addImgToImgBB(dataForm)
-      //   .then((resp) => {
-      //     const imgUrl = resp.data.data.display_url;
-      //     this.addProductToDb(imgUrl);
-      //   })
-      //   .catch((error) => console.error(error));
+  checkIfImgUpdated = (e) => {
+    e.preventDefault();
+    const { rawImgfile } = this.state;
+    if (rawImgfile) {
+      this.uploadImgToImbb();
+    } else if (!rawImgfile) {
+      this.addProductToDb();
     }
   }
 
-  addProductToDb = (imgUrl) => {
+  addProductToDb = () => {
     const prodObjToPostInDb = { ...this.state.newProdObj };
+    const updatedImgUrl = this.state.updatedUrl;
     const productId = this.props.newProdObj.id;
     prodObjToPostInDb.sellerId = 1;
-    if (this.state.rawImgfile !== '') {
-      prodObjToPostInDb.imgUrl = imgUrl;
+
+    if (updatedImgUrl) {
+      prodObjToPostInDb.imgUrl = updatedImgUrl;
     }
 
     data.editProduct(prodObjToPostInDb, productId)
       .then(() => {
         this.toggleModal();
         this.props.getProd();
+        this.setState({ updatedUrl: '', rawImgfile: '' });
+        this.setState({ isDisabled: false });
       })
       .catch((err) => console.error(err));
   }
@@ -92,52 +105,54 @@ class EditProductForm extends React.Component {
       imgUrl,
     } = this.state.newProdObj;
 
-    return (
-      <div className="AddProduct">
-        <img src={editIcon} alt="edit button" className="edit-btn" onClick={this.toggleModal} />
+    const { isDisabled } = this.state;
 
-        <Modal isOpen={modal} centered={true} >
-          <ModalBody>
-            <Form onSubmit={this.uploadImgToImbb} >
-              <div className="content">
+    return (
+    <div className="AddProduct">
+      <img src={editIcon} alt="edit button" className="edit-btn" onClick={this.toggleModal} />
+
+      <Modal isOpen={modal} centered={true} >
+        <ModalBody>
+          <Form onSubmit={this.checkIfImgUpdated} >
+            <div className="content">
+              <FormGroup>
+                <Label for="productTitle">Title</Label>
+                <Input type="text" id="productTitle" name="productName" value={productName} onChange={this.handleChanges} required />
+              </FormGroup>
+              <FormGroup>
+                <Label for="productDescription">Description</Label>
+                <Input type="textarea" id="productDescription" name="description" value={description} onChange={this.handleChanges} required />
+              </FormGroup>
+              <FormGroup>
+                <Label for="product-qty">Quantity </Label>
+                <Input type="number" name="qty" value={qty} onChange={this.handleChanges} required />
+              </FormGroup>
+              <div className="price-category">
                 <FormGroup>
-                  <Label for="productTitle">Title</Label>
-                  <Input type="text" id="productTitle" name="productName" value={productName} onChange={this.handleChanges} required />
+                  <Label for="price">Price</Label>
+                  <Input type="number" step="any" id="price" name="price" value={price} onChange={this.handleChanges} required />
                 </FormGroup>
                 <FormGroup>
-                  <Label for="productDescription">Description</Label>
-                  <Input type="textarea" id="productDescription" name="description" value={description} onChange={this.handleChanges} required />
+                  <Category
+                    changeServiceType={this.changeServiceType}
+                    serviceType={serviceType} />
                 </FormGroup>
-                <FormGroup>
-                  <Label for="product-qty">Quantity </Label>
-                  <Input type="number" name="qty" value={qty} onChange={this.handleChanges} required />
-                </FormGroup>
-                <div className="price-category">
-                  <FormGroup>
-                    <Label for="price">Price</Label>
-                    <Input type="number" step="any" id="price" name="price" value={price} onChange={this.handleChanges} required />
-                  </FormGroup>
-                  <FormGroup>
-                    <Category
-                      changeServiceType={this.changeServiceType}
-                      serviceType={serviceType} />
-                  </FormGroup>
-                </div>
-                <FormGroup>
-                  <img src={imgUrl} alt="product img" />
-                  <AddImage updateStateWithRawImgFiles={this.updateStateWithRawImgFiles} />
-                </FormGroup>
-                <div className="add-btn-wrapper">
-                  <button id="submit-btm" type="submit">Update</button>
-                </div>
               </div>
-            </Form>
-            <div className = "cancel-btn-wrapper">
-              <button className="cancel-btn" onClick={this.toggleModal}>Cancel</button>
+              <FormGroup>
+                <img src={imgUrl} alt="product img" />
+                <AddImage updateStateWithRawImgFiles={this.updateStateWithRawImgFiles} />
+              </FormGroup>
+              <div className="update-btn-wrapper">
+                <button id="submit-btm" type="submit" disabled={isDisabled}>Update</button>
+              </div>
             </div>
-          </ModalBody>
-        </Modal>
-      </div>
+          </Form>
+          <div className="cancel-btn-wrapper">
+            <button className="cancel-btn" onClick={this.toggleModal} disabled={isDisabled}>Cancel</button>
+          </div>
+        </ModalBody>
+      </Modal>
+    </div>
     );
   }
 }

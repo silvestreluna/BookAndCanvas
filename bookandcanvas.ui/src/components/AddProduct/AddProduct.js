@@ -155,7 +155,7 @@ class AddProduct extends React.Component {
                 </FormGroup>
                 <FormGroup>
                   <Label for="product-qty">Quantity </Label>
-                  <Input type="number" name="qty" value={qty} onChange={this.handleChanges} required />
+                  <Input type="number" id="product-qty" name="qty" value={qty} onChange={this.handleChanges} required />
                 </FormGroup>
                 <div className="price-category">
                   <FormGroup>
@@ -181,7 +181,7 @@ class AddProduct extends React.Component {
                 </FormGroup>
                 <div className="add-cancel-btns">
                   <button type="submit" disabled={isDisabled}>Add</button>
-                  <button onClick={this.toggleModal}>Cancel</button>
+                  <button onClick={this.toggleModal} disabled={isDisabled}>Cancel</button>
                 </div>
               </div>
             </Form>
