@@ -1,33 +1,59 @@
 import React from 'react';
-import './ProfileAside.scss';
-
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+import './ProfileAside.scss';
+import EditUserForm from './EditUserForm';
+import useGlobalState from '../../GlobalState';
 
-export default class ProfileAside extends React.Component {
-  state = {
-    user: [],
-  }
+import userShape from '../../helpers/Propz/UserShape';
 
-  componentDidMount() {
+const ProfileAside = () => {
+  const [globalState, globalActions] = useGlobalState();
+  const [state, setState] = React.useState(
+    {
+      moveToEdit: false,
+      show: false,
+    },
+  );
+
+  const showModal = () => {
+    setState({ show: true });
+  };
+
+  const hideModal = () => {
+    setState({ show: false });
+  };
+
+  React.useEffect(() => {
     axios.get('https://localhost:44350/api/users/1')
       .then(res => {
         const user = res.data;
-        this.setState({ user: { ...user } });
-      })
+        globalActions.setUser(user);
+      });
+  }, []);
+
+  const EditButton = () => (
+    <EditUserForm />);
+
+  const { user } = globalState;
+
+  if (user === null) {
+    return null;
   }
 
-  render() {
+  return (
+    // Return user info
+    <div className="userinfo">
+      <img className="useravatar" src={user.imgUrl} alt="UserAvatar"/>
+      <h3 className="userfname">{user.fName}</h3>
+      <h3 className="userlname">{user.lName}</h3>
+      <h6 className="useremail">{user.email}</h6>
+      <h6 className="userphone">{user.phone}</h6>
+      <p className="userbio">{user.bio}</p>
+    <div>
+      <p>{EditButton()}</p>
+    </div>
+    </div>);
+};
 
-    return (
-      // Return user info
-      <div className="userinfo">
-        <img className="useravatar" src={this.state.user.imgUrl}/>
-        <h3 className="userfname">{this.state.user.fName}</h3>
-        <h3 className="userlname">{this.state.user.lName}</h3>
-        <h6 className="useremail">{this.state.user.email}</h6>
-        <h6 className="userphone">{this.state.user.phone}</h6>
-        <p className="userbio">{this.state.user.bio}</p>
-      </div>
-    )
-  }
-}
+export default ProfileAside;

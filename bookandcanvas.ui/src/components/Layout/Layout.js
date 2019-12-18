@@ -2,15 +2,13 @@ import React from 'react';
 import AddProduct from '../AddProduct/AddProduct';
 import productRequest from '../../helpers/data/productRequests';
 import LandingPage from '../LandingPage/LandingPage';
-import AppNavbar from '../AppNavbar/AppNavbar';
-
 import ProfileAside from '../Profile/ProfileAside';
 import './Layout.scss';
 
 
 class Layout extends React.Component {
-    state={
-      Products: [],
+    state= {
+        Products: []
     }
 
     getProducts = () => {
@@ -32,17 +30,17 @@ class Layout extends React.Component {
     }
 
     render() {
-      return (
+        return (
+
             <React.Fragment>
                 <header>
-                    <AppNavbar></AppNavbar>
                     <div className="secondarymenu">
                         <AddProduct getProd={this.getProducts} />
                     </div>
                 </header>
                 <section>
                     <aside>
-                            <ProfileAside />
+                        <ProfileAside />
                     </aside>
                     <main>
                         <LandingPage
