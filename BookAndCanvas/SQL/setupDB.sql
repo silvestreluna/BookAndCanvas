@@ -204,7 +204,8 @@ create table Images
 (
 	[Id] int primary key identity(1,1),
 	[userId] int not null,
-	productId int not null
+	productId int not null,
+	imageUrl nvarchar(max)
 )
 
 use BookAndCanvas
@@ -212,8 +213,9 @@ alter table Images
 	add constraint FK_Images_ProductId
 					foreign key(ProductId)
 					references Product(Id)
+					ON DELETE CASCADE
 
 alter table Images 
 	add constraint FK_Images_userId
-					foreign key(Id)
+					foreign key(UserId)
 					references Users(Id)

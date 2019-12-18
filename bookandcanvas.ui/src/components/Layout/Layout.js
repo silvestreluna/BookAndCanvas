@@ -38,7 +38,6 @@ class Layout extends React.Component {
     return (
       <React.Fragment>
         <header>
-          <AppNavbar></AppNavbar>
           <div className="secondarymenu">
             <AddProduct getProd={this.getProducts} />
           </div>
