@@ -35,7 +35,6 @@ class Layout extends React.Component {
   }
 
   render() {
-    console.log(this.state.Products);
     return (
       <React.Fragment>
         <header>
@@ -47,7 +46,6 @@ class Layout extends React.Component {
         <section>
            <BrowserRouter>
            <Switch>
-              {/* <ProductDetail Products={this.state.products} className="ProductDetailComponent"/> */}
               <Route path="/ProfilePage" exact render={(props) => (
               <React.Fragment>
                   <ProfileAside />

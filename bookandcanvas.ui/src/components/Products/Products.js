@@ -12,12 +12,8 @@ class Products extends React.Component {
       deleteProdById={this.props.deleteProdById}
       getProd={this.props.getProd}
       historyProp={history}
-      // clicked={() => this.productTileSelectedHandler(t.id)}
       />);
   });
-
-  componentDidMount() {
-  }
 
   render() {
     return (

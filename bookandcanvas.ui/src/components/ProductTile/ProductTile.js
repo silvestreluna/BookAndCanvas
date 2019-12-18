@@ -1,5 +1,4 @@
 import React from 'react';
-// import { withRouter } from 'react-router-dom';
 import EditProductForm from '../EditProductForm/EditProductForm';
 import deleteIcon from '../../assets/images/delete-icon.svg';
 
@@ -17,7 +16,6 @@ class ProductTile extends React.Component {
 
   productTileSelectedHandler = () => {
     this.props.historyProp.push({ pathname: `product/${this.props.data.id}` });
-    // console.log('Hello');
   }
 
   render() {
@@ -59,4 +57,3 @@ class ProductTile extends React.Component {
   }
 }
 export default ProductTile;
-// export default withRouter(ProductTile);
