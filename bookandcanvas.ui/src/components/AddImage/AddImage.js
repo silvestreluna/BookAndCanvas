@@ -1,55 +1,47 @@
 import React from 'react';
 import { Label, Input } from 'reactstrap';
-import data from '../../helpers/data/postImg';
 import './AddImage.scss';
 
 class AddImage extends React.Component {
   state = {
-    imgForImgbb: '',
-    tempLocalImgDisplay: '',
+    tempLocalImgToDisplay: [],
   }
 
   handleChange = (e) => {
-    const img = e.target.files[0];
-    if (img) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        this.setState({ tempLocalImgDisplay: reader.result, imgForImgbb: img });
-      };
-      reader.readAsDataURL(img);
+    e.preventDefault();
+    const allFiles = e.target.files;
+    const tempImgs = [];
+    const imgFiles = [];
+    for (let i = 0; i < allFiles.length; i += 1) {
+      const img = URL.createObjectURL(allFiles.item(i));
+      tempImgs.push(img);
+      imgFiles.push(allFiles[i]);
     }
+    this.setState({ tempLocalImgToDisplay: tempImgs });
+    this.props.updateStateWithRawImgFiles(imgFiles);
   };
 
-  uploadImgToImgbb = () => {
-    const { imgForImgbb } = this.state;
-    const dataForm = new FormData();
-    dataForm.append('image', imgForImgbb);
-    data.addImgToImgBB(dataForm)
-      .then((resp) => {
-        const imgUrl = resp.data.data.display_url;
-        this.props.setProdImgUrl(imgUrl);
-        this.setState({ tempLocalImgDisplay: '' });
-      })
-      .catch((error) => console.error(error));
-  }
-
   render() {
-    const { tempLocalImgDisplay } = this.state;
+    const { tempLocalImgToDisplay } = this.state;
 
     const displayLabel = () => {
-      if (tempLocalImgDisplay) {
-        return <Label for="img-url">Change your Image</Label>;
+      if (tempLocalImgToDisplay.length > 0) {
+        return <Label for="img-url">Change your Image(s)</Label>;
       }
-      return <Label for="img-url">Select an Image to upload</Label>;
+      return <Label for="img-url">Select Image(s) to upload</Label>;
     };
+
+    const displayTempImgs = tempLocalImgToDisplay.map((imgUrl) => <img src={imgUrl} key={imgUrl} alt="product img"/>);
 
     return (
       <div className="AddImage">
         <div className="diplay-temp-img">
           {
-            (tempLocalImgDisplay)
+            (tempLocalImgToDisplay)
               ? (
-                <img src={tempLocalImgDisplay} alt="selected img" />
+                <div className="temp-img-wrapper">
+                  {displayTempImgs}
+                </div>
               )
               : (
                 ''
@@ -57,22 +49,10 @@ class AddImage extends React.Component {
           }
         </div>
         <div className="file-upload-input">
-          <Input type="file" name="imgUrl" id="img-url" onChange={this.handleChange} />
+          <Input type="file" name="imgUrl" id="img-url" multiple onChange={this.handleChange} />
           {
             displayLabel()
           }
-          {/* <Label for="img-url">Select an Image to upload</Label> */}
-        </div>
-        {
-          (tempLocalImgDisplay)
-            ? (
-              <Input type="button" className="btn btn-primary" value="I want this image" id="upload" name="btn-to-upload" onClick={this.uploadImgToImgbb} />
-            )
-            : (
-              ''
-            )
-        }
-        <div>
         </div>
       </div>
     );

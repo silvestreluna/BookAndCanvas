@@ -22,14 +22,21 @@ button{
     }
 }
 
+button:disabled {
+  opacity: 0.4;
+  cursor: wait;
+}
+
 .cancel-btn-wrapper {
   width: 45%;
 }
 
-.add-btn-wrapper {
+.update-btn-wrapper {
   float: left;
   width: 20%;
+  margin-top: 3px;
   #submit-btm {
     background-color: $color10;
+    height: 40px;
   }
 }
