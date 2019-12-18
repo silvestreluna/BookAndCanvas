@@ -22,7 +22,8 @@ class EditProductForm extends React.Component {
     newProdObj: {},
   }
 
-  toggleModal = () => {
+  toggleModal = (e) => {
+    e.stopPropagation();
     this.setState({ newProdObj: this.props.newProdObj });
     this.setState({ showingModal: !this.state.showingModal });
   }
