@@ -3,12 +3,15 @@ import AddProduct from '../AddProduct/AddProduct';
 import productRequest from '../../helpers/data/productRequests';
 import LandingPage from '../LandingPage/LandingPage';
 import ProfileAside from '../Profile/ProfileAside';
+
+
+import OrderHistory from '../OrderHistory/OrderHistory';
 import './Layout.scss';
 
 
 class Layout extends React.Component {
     state= {
-        Products: []
+      Products: [],
     }
 
     getProducts = () => {
@@ -30,7 +33,7 @@ class Layout extends React.Component {
     }
 
     render() {
-        return (
+      return (
 
             <React.Fragment>
                 <header>
@@ -50,6 +53,13 @@ class Layout extends React.Component {
                         ></LandingPage>
                     </main>
                 </section>
+
+
+        {/* Temp spot for OrderHistory component - will move later */}
+
+        <OrderHistory />
+
+
             </React.Fragment>
       );
     }
