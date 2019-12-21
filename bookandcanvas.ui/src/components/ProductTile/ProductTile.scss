@@ -50,6 +50,15 @@
     background-color:rgba(0,0,0,.4);
     width:100%;
     padding:5px 20px;
+    height:45px;
+    white-space: nowrap;
+    h4{
+        padding-bottom:5px;
+    }
+    h6{
+        overflow:hidden;
+        text-overflow: ellipsis;
+    }
 }
 .wrapper{
     display:flex;
