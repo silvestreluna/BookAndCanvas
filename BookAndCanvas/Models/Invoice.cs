@@ -13,5 +13,6 @@ namespace BookAndCanvas.Models
         public int BuyerId { get; set; }
         public int ServiceType { get; set; }
         public int PaymentId { get; set; }
+        public List<Product> ArtWork {get; set;}
     }
 }

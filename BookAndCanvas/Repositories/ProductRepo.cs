@@ -63,5 +63,18 @@ namespace BookAndCanvas.Repositories
                 return db.Execute(sql, updatedProduct)== 1;
             }
         }
+
+        public IEnumerable<Product> GetProductById(int prodId)
+        {
+            using(var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"SELECT *
+                                FROM product
+                                WHERE [Id] = @prodId";
+                return db.Query<Product>(sql, new { prodId});
+            }
+        }
+
+
     }
 }
