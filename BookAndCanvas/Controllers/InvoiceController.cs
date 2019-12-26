@@ -12,11 +12,20 @@ namespace BookAndCanvas.Controllers
     [ApiController]
     public class InvoiceController : ControllerBase
     {
-        [HttpGet("{id}")]
+        [HttpGet("user/{id}")]
         public IActionResult GetUserInvoices(int id)
         {
             var repo = new InvoiceRepo();
             var userInvoices = repo.GetInvoiceByUser(id);
+            return Ok(userInvoices);
+
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetInvoiceByInvoiceId(int id)
+        {
+            var repo = new InvoiceRepo();
+            var userInvoices = repo.GetInvoiceById(id);
             return Ok(userInvoices);
 
         }

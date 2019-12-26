@@ -27,19 +27,37 @@ namespace BookAndCanvas.Repositories
 
                 var allUserInvoices = db.Query<Invoice>(sql, new { userId });
 
-                //var repo = new ProductRepo();
-                //foreach(var invoice in allUserInvoices)
-                //{
-                //    var invoiceProduct = repo.GetProductById(invoice.Id);
-                //    invoice.ArtWork = new List<Product>();
-                //    invoice.ArtWork.AddRange(invoiceProduct);
-                //}
+                var repo = new ProductAndInvoiceRepo();
+                
+                foreach(var inv in allUserInvoices)
+                {
+                    var invWithProd = repo.GetInvoiceById(inv.BuyerId);
+                    foreach(var invProd in invWithProd)
+                    {
+                        var prodRepo = new ProductRepo();
+                        var prod = prodRepo.GetProductById(invProd.ProductId);
+                        inv.ArtWork = new List<Product>();
+                        inv.ArtWork.AddRange(prod);
+                    }
+                }
 
-                //return allUserInvoices.ToList();
                 return allUserInvoices;
                
             }
-            
+           
         }
+
+        public IEnumerable<Invoice> GetInvoiceById(int invoiceId)
+        {
+            using(var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"SELECT * FROM Invoice WHERE [Id] = @invoiceId";
+
+                return db.Query<Invoice>(sql, new { invoiceId 
+                });
+            }
+
+        }
+
     }
 }
