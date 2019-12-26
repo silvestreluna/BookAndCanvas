@@ -35,9 +35,9 @@ namespace BookAndCanvas.Repositories
                     foreach(var invProd in invWithProd)
                     {
                         var prodRepo = new ProductRepo();
-                        var prod = prodRepo.GetProductById(invProd.ProductId);
+                        var artwork= prodRepo.GetProductById(invProd.ProductId);
                         inv.ArtWork = new List<Product>();
-                        inv.ArtWork.AddRange(prod);
+                        inv.ArtWork.AddRange(artwork);
                     }
                 }
 
