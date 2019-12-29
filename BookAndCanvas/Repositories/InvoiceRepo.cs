@@ -31,14 +31,17 @@ namespace BookAndCanvas.Repositories
                 
                 foreach(var inv in allUserInvoices)
                 {
-                    var invWithProd = repo.GetInvoiceById(inv.BuyerId);
+                    List<Product> tempProd = new List<Product>();
+                    var invWithProd = repo.GetInvoiceById(inv.Id);
                     foreach(var invProd in invWithProd)
                     {
                         var prodRepo = new ProductRepo();
                         var artwork= prodRepo.GetProductById(invProd.ProductId);
-                        inv.ArtWork = new List<Product>();
-                        inv.ArtWork.AddRange(artwork);
+                        tempProd.AddRange(artwork);
                     }
+
+                    inv.ArtWork = new List<Product>();
+                    inv.ArtWork.AddRange(tempProd);
                 }
 
                 return allUserInvoices;
