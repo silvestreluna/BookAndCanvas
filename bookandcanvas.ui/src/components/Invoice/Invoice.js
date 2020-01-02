@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import ProductInvoice from './ProductInvoice';
 import './Invoice.scss';
 
@@ -28,11 +29,11 @@ class Invoice extends React.Component {
         <div className="invoice-header">
           <div>
             <p>Order Placed</p>
-            <p>{invoiceData.date}</p>
+            <p>{moment(invoiceData.date).format('LL')}</p>
           </div>
           <div>
             <p>Total</p>
-            <p>{invoiceData.total}</p>
+            <p>{`$${invoiceData.total}`}</p>
           </div>
           <div>
             <p>Shipped To</p>
@@ -48,15 +49,16 @@ class Invoice extends React.Component {
           </div>
           <div className="product-details">
             <div className="product-and-user-wrapper">
-              {(invoiceData.artWork[0])
-                ? (<p>{invoiceData.artWork[0].productName}</p>)
-                : ('')}
-              <p>{user.fName}</p>
+              <p>{invoiceData.artWork[0].productName}</p>
+              <div className="user">
+                <img src={user.imgUrl} alt="user avatar" />
+                <p>{user.fName} {user.lName}</p>
+              </div>
             </div>
             <div className="total-price-wrapper">
               <p>Total</p>
-              <p>{invoiceData.total}</p>
-              <div>
+              <p>{`$${invoiceData.artWork[0].price}`}</p>
+              <div className="detail-btn">
                 <button>Details</button>
               </div>
             </div>

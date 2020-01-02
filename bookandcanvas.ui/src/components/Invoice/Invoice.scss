@@ -1,11 +1,10 @@
 @import '../../styles/colors.scss';
 
 .invoice {
-    background-color: $color2;
-    width: 50em;
-    // height: 20%;
+    background-color: $color3;
+    width: 44em;
     align-items: center;
-    margin: 3px;
+    margin: 8px;
   }
 
 .invoice-header{
@@ -13,38 +12,65 @@
   justify-content: space-between;
   padding: 1em ;
   background-color: $color1;
-  // height: 40px;
-  margin-bottom: 3px;
+  margin-bottom: 0.2em;
+  font-weight: 300;
+  
+  p:first-child {
+    color: $color7;
+    margin-bottom: 7px;
+  }
 }
 
 .invoice-content {
   display: flex;
   justify-content: space-around;
-  // background-color: coral;
+  background-color: $color2;
   padding: 1em 1em;
 }
 
 .product-img {
-  // background-color: darkgrey;
   height: 100px;
   width: 150px;
-  img {
-    height: inherit;
-  }
+  border:2px solid #2c2c2c;
+  border-radius: 5px;
+  box-shadow: 5px 5px 10px rgba(0,0,0,.4);
 }
 
 .product-details {
   display: flex;
   justify-content: space-around;
-  // background-color: lime;
-  // color: black;
   height: 100px;
   width: 75%;
-  padding-top: 1em;
   .total-price-wrapper,
   .product-and-user-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    font-weight: 300;
+    p:nth-child(2){
+      font-weight: 400;
+      color: $color1;
+    }
+  }
+
+  .user {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+    img {
+      border: 1px solid $color1;
+      border-radius:50%;
+      width: 40px;
+      height: 40px;
+    }
+    p {
+      margin-left: 1px;
+      font-size: 12px;
+    }
+  }
+
+  .detail-btn {
+    margin-top: 1em;
   }
 }
