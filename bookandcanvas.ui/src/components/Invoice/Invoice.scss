@@ -1,0 +1,50 @@
+@import '../../styles/colors.scss';
+
+.invoice {
+    background-color: $color2;
+    width: 50em;
+    // height: 20%;
+    align-items: center;
+    margin: 3px;
+  }
+
+.invoice-header{
+  display: flex;
+  justify-content: space-between;
+  padding: 1em ;
+  background-color: $color1;
+  // height: 40px;
+  margin-bottom: 3px;
+}
+
+.invoice-content {
+  display: flex;
+  justify-content: space-around;
+  // background-color: coral;
+  padding: 1em 1em;
+}
+
+.product-img {
+  // background-color: darkgrey;
+  height: 100px;
+  width: 150px;
+  img {
+    height: inherit;
+  }
+}
+
+.product-details {
+  display: flex;
+  justify-content: space-around;
+  // background-color: lime;
+  // color: black;
+  height: 100px;
+  width: 75%;
+  padding-top: 1em;
+  .total-price-wrapper,
+  .product-and-user-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}

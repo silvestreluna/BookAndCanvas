@@ -1,5 +1,6 @@
 import React from 'react';
 import invData from '../../helpers/data/invoiceRequest';
+import userData from '../../helpers/data/addUser';
 import Invoice from '../Invoice/Invoice';
 
 import './OrderHistory.scss';
@@ -8,9 +9,19 @@ class OrderHistory extends React.Component {
   state = {
     userInvoices: [],
     userProductForInv: [],
+    user: {},
+  }
+
+  getUser = () => {
+    userData.getUserById(1)
+      .then((resp) => {
+        this.setState({ user: resp.data });
+      })
+      .catch((error) => console.error(error));
   }
 
   componentDidMount() {
+    this.getUser();
     invData.getuserInvoices()
       .then((resp) => {
         this.setState({ userInvoices: resp });
@@ -19,30 +30,15 @@ class OrderHistory extends React.Component {
   }
 
   render() {
-    const { userInvoices } = this.state;
-    const eachInvoice = userInvoices.map((inv) => <Invoice key={inv.id} inv={inv} />);
+    const { userInvoices, user } = this.state;
+    const eachInvoice = userInvoices.map((inv) => <Invoice key={inv.id} inv={inv} user={user}/>);
 
     return (
       <div className="OrderHistory">
         <div className="order-history-header">
           <p>OrderHistory</p>
         </div>
-        <div className="invoice-header">
-          <div>
-          </div>
-          <div>
-            <p>Total</p>
-          </div>
-          <div>
-            <p>Shipped To</p>
-          </div>
-          <div>
-            <p>Order# 113-7592-234563</p>
-          </div>
-        </div>
-        <div>
           {eachInvoice}
-        </div>
       </div>
     );
   }
