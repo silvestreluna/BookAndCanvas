@@ -5,11 +5,7 @@ import './Invoice.scss';
 
 class Invoice extends React.Component {
   state = {
-    productName: '',
-    productDesc: '',
-    productImgUrl: '',
     isShowing: false,
-
   }
 
   showDetails = () => {
@@ -76,7 +72,7 @@ class Invoice extends React.Component {
                   <div className="product-detail-header">
                     <p>Product</p>
                     <p>Description</p>
-                    <p>Total</p>
+                    <p>Price</p>
                   </div>
                   {prodInfo}
                 </div>

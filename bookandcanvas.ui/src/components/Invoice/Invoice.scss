@@ -82,17 +82,26 @@
 .details-wrapper {
   display: flex;
   flex-direction: column;
+  justify-items: center;
   margin-top: 0.2em;
   background-color: $color2;
   .product-detail-header,
   .product-info{
-    display: flex;
-    justify-content: space-between;
+    // display: flex;
+    // justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     padding: 1em;
   }
-  
+
   .product-detail-header {
     padding-bottom: 0;
     font-weight: 300;
   }
+  p:nth-child(3) {
+    text-align: right;
+    margin-right: 3.7em;
+  }
 }
+
+
