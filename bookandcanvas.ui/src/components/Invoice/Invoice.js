@@ -8,11 +8,17 @@ class Invoice extends React.Component {
     productName: '',
     productDesc: '',
     productImgUrl: '',
+    isShowing: false,
 
+  }
+
+  showDetails = () => {
+    this.setState({ isShowing: !this.state.isShowing });
   }
 
   render() {
     const invoiceData = this.props.inv;
+    const showAdditionalDetails = this.state.isShowing;
     const { user } = this.props;
 
     const prodImgStyle = {
@@ -45,8 +51,7 @@ class Invoice extends React.Component {
           </div>
         </div>
         <div className="invoice-content">
-          <div className="product-img" style={prodImgStyle}>
-          </div>
+          <div className="product-img" style={prodImgStyle}></div>
           <div className="product-details">
             <div className="product-and-user-wrapper">
               <p>{invoiceData.artWork[0].productName}</p>
@@ -59,11 +64,27 @@ class Invoice extends React.Component {
               <p>Total</p>
               <p>{`$${invoiceData.artWork[0].price}`}</p>
               <div className="detail-btn">
-                <button>Details</button>
+                <button onClick={this.showDetails}>Details</button>
               </div>
             </div>
           </div>
         </div>
+          {
+            (showAdditionalDetails)
+              ? (
+                <div className="details-wrapper">
+                  <div className="product-detail-header">
+                    <p>Product</p>
+                    <p>Description</p>
+                    <p>Total</p>
+                  </div>
+                  {prodInfo}
+                </div>
+              )
+              : (
+                ''
+              )
+          }
       </div>
     );
   }
