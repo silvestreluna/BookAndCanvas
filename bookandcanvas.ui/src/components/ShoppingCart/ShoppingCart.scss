@@ -1,0 +1,61 @@
+.shoppingCart {
+  background-color: rgb(0, 0, 0);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: 
+  "cart-header cart-header cart-header" 
+  "products products summary" 
+  "products products summary";
+
+  grid-gap: 1em;
+  margin-bottom: 100em;
+}
+
+.cart-header {
+  background-color: blue;
+  grid-area: cart-header;
+}
+
+.summary {
+  background-color: magenta;
+  grid-area: summary;
+  padding: 1em;
+}
+
+.products {
+  background-color: rgb(44, 116, 110);
+  grid-area: products;
+}
+
+.subtotal,
+.service-fees,
+.total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.subtotal {
+  padding: 1em 1em .2em 1em;
+}
+.service-fees {
+  padding: .2em 1em 1em 1em;
+}
+.total {
+  padding: 3em 1em;
+}
+
+.order-now-btn {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 700px) {
+  .shoppingCart {
+    grid-template-areas: 
+    "cart-header cart-header cart-header" 
+    "products products products" 
+    "summary summary summary";
+  }
+}
+

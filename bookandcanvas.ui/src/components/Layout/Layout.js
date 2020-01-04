@@ -5,7 +5,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import ProfileAside from '../Profile/ProfileAside';
 
 
-import OrderHistory from '../OrderHistory/OrderHistory';
+// import OrderHistory from '../OrderHistory/OrderHistory';
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import './Layout.scss';
 
 
@@ -57,7 +58,8 @@ class Layout extends React.Component {
 
         {/* Temp spot for OrderHistory component - will move later */}
 
-        <OrderHistory />
+        {/* <OrderHistory /> */}
+        <ShoppingCart />
 
 
             </React.Fragment>
