@@ -12,4 +12,8 @@ const deleteProd = (productId) => axios.delete(`${baseUrl}/product/${productId}`
 
 const editProduct = (UpdatedProd, id) => axios.put(`${baseUrl}/product/${id}`, UpdatedProd);
 
-export default { getAllProducts, deleteProd, editProduct };
+const getProductsById = (id) => axios.get(`${baseUrl}/product/${id}`);
+
+export default {
+  getAllProducts, deleteProd, editProduct, getProductsById,
+};

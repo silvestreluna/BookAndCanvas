@@ -1,9 +1,31 @@
 import React from 'react';
+import data from '../../helpers/data/productRequests';
+import CartProduct from '../CartProduct/CartProduct';
 
 import './ShoppingCart.scss';
 
 class ShoppingCart extends React.Component {
+  state = {
+    products: [],
+  }
+
+  getShoppingCartProducts = () => {
+    data.getProductsById(6)
+      .then((resp) => {
+        this.setState({ products: resp.data });
+      })
+      .catch((error) => console.error(error));
+  }
+
+  componentDidMount() {
+    this.getShoppingCartProducts();
+  }
+
   render() {
+    const { products } = this.state;
+
+    const displayProducts = products.map((prod) => <CartProduct key={prod.id} product={prod}/>);
+
     return (
       <div className="shoppingCart">
         <div className="cart-header">Shopping Cart</div>
@@ -32,7 +54,7 @@ class ShoppingCart extends React.Component {
           </div>
         </div>
         <div className="products">
-          <div>Hello</div>
+          { displayProducts }
         </div>
       </div>
     );
