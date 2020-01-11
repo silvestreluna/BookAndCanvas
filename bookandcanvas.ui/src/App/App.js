@@ -53,8 +53,7 @@ class App extends React.Component {
           <Switch>
             <PublicRoute path='/auth' component={Auth} authed={authed} />
             <PrivateRoute exact path="/" component={Layout} authed={authed}/>
-            <PublicRoute path="/addUser" component={NewUser} authed={authed}/>
-            <PrivateRoute path="/editUser" component={EditUser} authed={authed}/>
+
             <Redirect from="*" to="/auth" />
           </Switch>
         </BrowserRouter>
