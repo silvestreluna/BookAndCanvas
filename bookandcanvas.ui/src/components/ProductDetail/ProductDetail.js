@@ -42,7 +42,7 @@ class ProductDetail extends React.Component {
             <article className="right">
               <div className="productInfo-wrapper">
                 <span className="productTitle">{this.state.ProductDetails.productName}</span>
-                <span className="productPrice">{this.state.ProductDetails.price}</span>
+                <span className="productPrice">{`$${this.state.ProductDetails.price}`}</span>
               </div>
               <div>
                <span>{this.state.serviceType}</span>

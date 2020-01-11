@@ -17,6 +17,7 @@ class AppNavbar extends React.Component {
   logMeOut = (e) => {
     e.preventDefault();
     firebase.auth().signOut();
+    this.props.history.push('/home');
   };
 
   render() {
