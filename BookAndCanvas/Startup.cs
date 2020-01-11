@@ -40,7 +40,11 @@ namespace BookAndCanvas
 
             services.AddScoped<IProductRepository, ProductRepo>();
             services.AddScoped<IUsersRepository, UsersRepo>();
+<<<<<<< HEAD
             services.AddTransient<SqlConnection>(provider => new SqlConnection(connectionString));
+=======
+            services.AddScoped<IMessageRepository, MessageRepo>();
+>>>>>>> master
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

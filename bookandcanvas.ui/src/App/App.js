@@ -2,14 +2,13 @@ import React from 'react';
 import { Switch, BrowserRouter } from 'react-router-dom';
 
 import Layout from '../components/Layout/Layout';
-import FbConnections from '../helpers/connections';
+import fbConnections from '../helpers/connections';
 
 import './App.scss';
 
+fbConnections();
 
 function App() {
-  FbConnections();
-
   return (
     <BrowserRouter>
       <Switch>

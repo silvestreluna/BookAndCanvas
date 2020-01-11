@@ -35,7 +35,7 @@ class ProductDetail extends React.Component {
       return (
           <main className="wrapper">
             <article className="left">
-              <div className="slideshow" style={{ backgroundImage: 'url("' + this.state.ProductDetails.imgUrl + '")' }}>
+              <div className="slideshow" style={{ backgroundImage: `url("${this.state.ProductDetails.imgUrl}")` }}>
                 {/* <carosel details={this.state.ProductDetails}></carosel> */}
               </div>
             </article>

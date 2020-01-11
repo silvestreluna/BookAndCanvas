@@ -12,20 +12,6 @@ import Login from '../Login/Login';
 import ProfileAside from '../Profile/ProfileAside';
 import './Layout.scss';
 
-const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
-  const routeChecker = (props) => (authenticated === true
-    ? (<Component {...props} />)
-    : (<Redirect to={{ pathname: '/login', state: { from: props.location } }} />));
-  return <Route {...rest} render={(props) => routeChecker(props)} />;
-};
-
-const PublicRoute = ({ component: Component, authenticated, ...rest }) => {
-  const routeChecker = (props) => (authenticated === false
-    ? (<Component {...props} />)
-    : (<Redirect to={{ pathname: '/', state: { from: props.location } }} />));
-  return <Route {...rest} render={(props) => routeChecker(props)} />;
-};
-
 class Layout extends React.Component {
   state = {
     Products: [],
@@ -73,7 +59,7 @@ class Layout extends React.Component {
     return (
       <React.Fragment>
         <header>
-          <AppNavbar authenticated={this.state.authenticated}></AppNavbar>
+          <AppNavbar authenticated={this.state.authenticated} {...this.props}></AppNavbar>
           {(this.state.authenticated === true)
             ? <div className="secondarymenu">
                 <AddProduct getProd={this.getProducts} />
@@ -103,7 +89,7 @@ class Layout extends React.Component {
                   <Login {...props} setAuthenticationState={this.setAuthenticationState} />
                )} />
 
-              <PublicRoute path='/home' component={(props) => (
+              <Route path='/home' component={(props) => (
               <Products Products={this.state.Products}
                     deleteProdById={this.deleteProdById}
                     getProd={this.getProducts}
