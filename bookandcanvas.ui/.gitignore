@@ -2,7 +2,7 @@
 
 # dependencies
 /src/helpers/apiKeys.json
-/src/helpers/data/authConfig.json
+/src/helpers/authConfig.json
 
 
 /node_modules

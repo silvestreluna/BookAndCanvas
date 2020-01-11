@@ -1,58 +1,106 @@
 import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import firebase from 'firebase';
+
 import AddProduct from '../AddProduct/AddProduct';
 import productRequest from '../../helpers/data/productRequests';
-import LandingPage from '../LandingPage/LandingPage';
+import Products from '../Products/Products';
+import ProductDetail from '../ProductDetail/ProductDetail';
+import AppNavbar from '../AppNavbar/AppNavbar';
+import Login from '../Login/Login';
+
 import ProfileAside from '../Profile/ProfileAside';
 import './Layout.scss';
 
-
 class Layout extends React.Component {
-    state= {
-        Products: []
-    }
+  state = {
+    Products: [],
+    authenticated: false,
+  }
 
-    getProducts = () => {
-      productRequest.getAllProducts().then((data) => {
-        this.setState({ Products: data });
-      });
-    }
+  setAuthenticationState = (authenticated) => {
+    this.setState({ authenticated });
+  }
 
-    deleteProdById = (prodId) => {
-      productRequest.deleteProd(prodId)
-        .then(() => {
-          this.getProducts();
-        })
-        .catch((error) => console.error(error));
-    }
+  getProducts = () => {
+    productRequest.getAllProducts().then((data) => {
+      this.setState({ Products: data });
+    });
+  }
 
-    componentDidMount() {
-      this.getProducts();
-    }
+  deleteProdById = (prodId) => {
+    productRequest.deleteProd(prodId)
+      .then(() => {
+        this.getProducts();
+      })
+      .catch((error) => console.error(error));
+  }
 
-    render() {
-        return (
+  // componentDidMount() {
+  //   this.getProducts();
+  // }
 
-            <React.Fragment>
-                <header>
-                    <div className="secondarymenu">
-                        <AddProduct getProd={this.getProducts} />
-                    </div>
-                </header>
-                <section>
-                    <aside>
-                        <ProfileAside />
-                    </aside>
-                    <main>
-                        <LandingPage
-                        Products={this.state.Products}
-                        deleteProdById={this.deleteProdById}
-                        getProd={this.getProducts}
-                        ></LandingPage>
-                    </main>
-                </section>
-            </React.Fragment>
-      );
-    }
+  componentDidMount() {
+    this.getProducts();
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ authenticated: true });
+      } else {
+        this.setState({ authenticated: false });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.removeListener();
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <header>
+          <AppNavbar authenticated={this.state.authenticated} {...this.props}></AppNavbar>
+          {(this.state.authenticated === true)
+            ? <div className="secondarymenu">
+                <AddProduct getProd={this.getProducts} />
+              </div>
+            : null
+            }
+        </header>
+        <section>
+              <Route path="/ProfilePage" exact render={(props) => (
+              <React.Fragment>
+                  <ProfileAside />
+                  <Products Products={this.state.Products}
+                      deleteProdById={this.deleteProdById}
+                      getProd={this.getProducts}
+                      {...props} />
+              </React.Fragment>)}
+              />
+
+              <Route path="/" exact render={(props) => (
+              <Products Products={this.state.Products}
+                    deleteProdById={this.deleteProdById}
+                    getProd={this.getProducts}
+                    {...props} />
+              )}
+              />
+               <Route path="/login" exact render={(props) => (
+                  <Login {...props} setAuthenticationState={this.setAuthenticationState} />
+               )} />
+
+              <Route path='/home' component={(props) => (
+              <Products Products={this.state.Products}
+                    deleteProdById={this.deleteProdById}
+                    getProd={this.getProducts}
+                    {...props} />
+              )} authenticated={this.state.authenticated}/>
+
+              <Route path="/product/:id" component={ProductDetail}/>
+        </section>
+      </React.Fragment>
+    );
+  }
 }
 
 export default Layout;

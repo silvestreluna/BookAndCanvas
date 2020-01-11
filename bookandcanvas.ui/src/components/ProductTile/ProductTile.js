@@ -14,6 +14,10 @@ class ProductTile extends React.Component {
     this.props.deleteProdById(prodId);
   }
 
+  productTileSelectedHandler = () => {
+    this.props.historyProp.push({ pathname: `product/${this.props.data.id}` });
+  }
+
   render() {
     const productTileStyle = {
       backgroundImage: `url(${this.props.data.imgUrl})`,
@@ -22,31 +26,33 @@ class ProductTile extends React.Component {
       backgroundSize: 'cover',
     };
 
-    const EditButton = () => <EditProductForm newProdObj={this.props.data} getProd={this.props.getProd} />;
+    const EditButton = () => (
+      <EditProductForm newProdObj={this.props.data} getProd={this.props.getProd} />
+    );
 
     return (
-      <React.Fragment>
-        <div style={productTileStyle} className="productTile">
-          <div className="btn-wrapper">
-            <div>
-              {EditButton()}
-            </div>
-            <div>
-              <img src={deleteIcon} alt="delete-icon" className="delete-btn" onClick={this.deleteProduct} />
-            </div>
+        <React.Fragment>
+          <div style={productTileStyle} className="productTile" onClick={this.productTileSelectedHandler}>
+            <div className="btn-wrapper">
+              <div>
+                {EditButton()}
+              </div>
+              <div>
+                <img src={deleteIcon} alt="delete-icon" className="delete-btn" onClick={this.deleteProduct} />
+              </div>
 
-          </div>
-          <div className="info-wrapper">
-            <div className="wrapper">
-              <h4>{this.props.data.productName}</h4>
-              <h4 className="price">{this.props.data.price}</h4>
             </div>
-            <div className="wrapper">
-              <h6>{this.props.data.description}</h6>
+            <div className="info-wrapper">
+              <div className="wrapper">
+                <h4>{this.props.data.productName}</h4>
+                <h4 className="price">{`$${this.props.data.price.toFixed(2)}`}</h4>
+              </div>
+              <div className="wrapper">
+                <h6>{this.props.data.description}</h6>
+              </div>
             </div>
           </div>
-        </div>
-      </React.Fragment>
+        </React.Fragment>
     );
   }
 }

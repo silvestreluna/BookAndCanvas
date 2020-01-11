@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using BookAndCanvas.DTOs;
 using BookAndCanvas.Models;
+using Microsoft.AspNetCore.Mvc;
 using Dapper;
 
 namespace BookAndCanvas.Repositories
@@ -34,6 +35,24 @@ namespace BookAndCanvas.Repositories
                 return products.ToList();
             }
         }
+        public ActionResult<Product> GetProductById(int id)
+        {
+            using (var db = new SqlConnection(_connectionString))
+            {
+                var sql = @"select *
+                            from Product
+                            where Product.Id = @ProductId";
+
+                    var product = db.QueryFirst<Product>(sql, new { ProductId = id });
+                    
+                    var productImages = new ImagesRepo();
+                    var allProductImages = productImages.GetImages(product.Id);
+                    var listOfProductImageUrls = allProductImages.Select(x => x.ImageUrl);
+                    product.imgList = listOfProductImageUrls.ToList();
+                return product;
+            }
+        }
+
 
         public bool DeleteProdById(int productId)
         {

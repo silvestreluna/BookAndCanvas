@@ -1,63 +1,52 @@
 import React from 'react';
-import { NavLink as RRNavLink } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-import {Navbar, Nav, NavLink, NavItem, NavbarToggler, NavbarBrand, Collapse } from 'reactstrap';
+import { Link, withRouter } from 'react-router-dom';
+import firebase from 'firebase';
 
 import './AppNavbar.scss';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
+import email from '../../assets/images/email-icon.svg';
+import shoppingCart from '../../assets/images/cart-icon.svg';
+// import computer from '../../assets/images/edit-icon.svg';
+// import authService from '../../helpers/auth.service';
 
 class AppNavbar extends React.Component {
-    static propTypes = {
-      authed: PropTypes.bool.isRequired,
-    }
+  componentDidMount() {
+    // this.setState({ authenticated: authService.CheckAuth() });
+  }
 
-    state= {
-      isOpen: false,
-    }
+  logMeOut = (e) => {
+    e.preventDefault();
+    firebase.auth().signOut();
+    // this.props.location.pathname = '/home';
+    this.props.history.push('/home');
+    // window.history.push('/home');
+  };
 
-    toggle() {
-      this.setState({ isOpen: !this.state.isOpen });
-    }
+  render() {
+    const authed = this.props.authenticated;
+    return (
+      <React.Fragment>
+          <nav>
+              <p className="logoType">Books &amp; Canvas</p>
+              {(authed === true)
+                ? (<div>
+                <img src={email} alt="email icon" title="Email" className="nav-icon" />
+                <img src={shoppingCart} alt="cart icon" title="Shopping Cart" className="nav-icon" />
+                <ExitToAppIcon alt="cart icon" title="Shopping Cart" className="nav-icon" onClick={this.logMeOut} />
+                <Link to="/ProfilePage">
+                  <AccountCircleIcon alt="user icon" title="user icon" lassName="nav-icon" />
+                </Link>
+              </div>)
+                : (<div>
+                      <Link to="/login">Login</Link>
+                  </div>
+                )}
+          </nav>
+      </React.Fragment>
+    );
+  }
+}
 
-      logMeOut = (e) => {
-        e.preventDefault();
-        firebase.auth().signOut();
-      }
-
-      render() {
-        const { authed } = this.props;
-        const buildNavbar = () => {
-          if (authed) {
-            return (
-                    <Nav className="ml-auto" navbar>
-                      <NavItem>
-                        <NavLink tag={RRNavLink} to='/'>Landing Page</NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink tag={RRNavLink} to='/addUser'>Add User</NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink onClick={this.logMeOut}>Logout</NavLink>
-                      </NavItem>
-                    </Nav>
-            );
-          }
-          return <Nav className="ml-auto" navbar />;
-        };
-
-        return (
-                <div className="MyNavbar">
-                  <Navbar color="dark" dark expand="md">
-                    <NavbarBrand href="/">Books &amp; Canvas</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                      {buildNavbar()}
-                    </Collapse>
-                  </Navbar>
-                </div>
-              );
-        }
-    }
-
-export default AppNavbar;
+export default withRouter(AppNavbar);

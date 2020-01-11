@@ -30,7 +30,7 @@ const editUserObj = {
 //   bio: '',
 // };
 
- class EditUser extends React.Component {
+class EditUser extends React.Component {
   state = {
     editUserObj,
     moveToUpdate: false,

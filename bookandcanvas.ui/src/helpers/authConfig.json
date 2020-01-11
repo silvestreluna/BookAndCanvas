@@ -1,0 +1,11 @@
+{ 
+  "firebaseKeys": {
+  "apiKey": "AIzaSyAxbkapIUdhc8gFqblkOG4T7-o98BA9K2A",
+  "authDomain": "bookandcanvas-48a09.firebaseapp.com",
+  "databaseURL": "https://bookandcanvas-48a09.firebaseio.com",
+ " projectId": "bookandcanvas-48a09",
+  "storageBucket": "bookandcanvas-48a09.appspot.com",
+  "messagingSenderId": "599486576251",
+  "appId": "1:599486576251:web:25c9705ae5023ac85c54de"
+}
+}
