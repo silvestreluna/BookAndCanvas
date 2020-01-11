@@ -45,7 +45,7 @@ class ProductTile extends React.Component {
             <div className="info-wrapper">
               <div className="wrapper">
                 <h4>{this.props.data.productName}</h4>
-                <h4 className="price">{this.props.data.price}</h4>
+                <h4 className="price">{`$${this.props.data.price.toFixed(2)}`}</h4>
               </div>
               <div className="wrapper">
                 <h6>{this.props.data.description}</h6>

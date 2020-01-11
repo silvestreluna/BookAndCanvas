@@ -1,0 +1,47 @@
+@import '../../styles/colors.scss';
+
+@mixin buttonBase{
+    width:100%;
+    font-size:14px;
+    font-weight:300;
+    margin-bottom:2px;
+    &:hover{
+        color: $color0 !important;
+    }
+    &:focus, &:active, &:visited{
+        outline: none !important;
+    }
+}
+
+section{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+label{
+    margin:5px 0;
+    font-size:14px;
+    color:$color0;
+    font-weight:300;
+}
+input{
+    width: 100%;
+}
+button{
+    @include buttonBase;
+    &.loginBtn{
+        background-color: $color1;
+        color: $color0;
+        border: 1px solid #f16598;
+        &:hover{
+            background-color: lighten($color1, 5%);
+            border:1px solid lighten($color1, 5%);
+        }
+    }
+    &.googleBtn{
+        // @include buttonBase;
+        background-color:#0d5ae9;
+        
+
+    }
+}

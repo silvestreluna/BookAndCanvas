@@ -1,19 +1,39 @@
 import React from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
+import firebase from 'firebase';
 
 import AddProduct from '../AddProduct/AddProduct';
 import productRequest from '../../helpers/data/productRequests';
 import Products from '../Products/Products';
 import ProductDetail from '../ProductDetail/ProductDetail';
 import AppNavbar from '../AppNavbar/AppNavbar';
+import Login from '../Login/Login';
 
 import ProfileAside from '../Profile/ProfileAside';
 import './Layout.scss';
 
+const PrivateRoute = ({ component: Component, authenticated, ...rest }) => {
+  const routeChecker = (props) => (authenticated === true
+    ? (<Component {...props} />)
+    : (<Redirect to={{ pathname: '/login', state: { from: props.location } }} />));
+  return <Route {...rest} render={(props) => routeChecker(props)} />;
+};
+
+const PublicRoute = ({ component: Component, authenticated, ...rest }) => {
+  const routeChecker = (props) => (authenticated === false
+    ? (<Component {...props} />)
+    : (<Redirect to={{ pathname: '/', state: { from: props.location } }} />));
+  return <Route {...rest} render={(props) => routeChecker(props)} />;
+};
 
 class Layout extends React.Component {
   state = {
     Products: [],
+    authenticated: false,
+  }
+
+  setAuthenticationState = (authenticated) => {
+    this.setState({ authenticated });
   }
 
   getProducts = () => {
@@ -30,22 +50,38 @@ class Layout extends React.Component {
       .catch((error) => console.error(error));
   }
 
+  // componentDidMount() {
+  //   this.getProducts();
+  // }
+
   componentDidMount() {
     this.getProducts();
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ authenticated: true });
+      } else {
+        this.setState({ authenticated: false });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.removeListener();
   }
 
   render() {
     return (
       <React.Fragment>
         <header>
-          <AppNavbar></AppNavbar>
-          <div className="secondarymenu">
-            <AddProduct getProd={this.getProducts} />
-          </div>
+          <AppNavbar authenticated={this.state.authenticated}></AppNavbar>
+          {(this.state.authenticated === true)
+            ? <div className="secondarymenu">
+                <AddProduct getProd={this.getProducts} />
+              </div>
+            : null
+            }
         </header>
         <section>
-           <BrowserRouter>
-           <Switch>
               <Route path="/ProfilePage" exact render={(props) => (
               <React.Fragment>
                   <ProfileAside />
@@ -63,17 +99,18 @@ class Layout extends React.Component {
                     {...props} />
               )}
               />
-              <Route path="/Home" exact render={(props) => (
+               <Route path="/login" exact render={(props) => (
+                  <Login {...props} setAuthenticationState={this.setAuthenticationState} />
+               )} />
+
+              <PublicRoute path='/home' component={(props) => (
               <Products Products={this.state.Products}
                     deleteProdById={this.deleteProdById}
                     getProd={this.getProducts}
                     {...props} />
-              )}
-              />
-              <Route path="/product/:id" component={ProductDetail}/>
+              )} authenticated={this.state.authenticated}/>
 
-            </Switch>
-          </BrowserRouter>
+              <Route path="/product/:id" component={ProductDetail}/>
         </section>
       </React.Fragment>
     );
