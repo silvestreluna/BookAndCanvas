@@ -1,5 +1,5 @@
 import firebase from 'firebase/app';
-import firebaseConfig from './authConfig.json';
+import firebaseConfig from '../authConfig.json';
 
 const firebaseApp = () => {
   if (!firebase.apps.length) {
